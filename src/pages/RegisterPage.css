@@ -1,0 +1,93 @@
+/* src/pages/RegisterPage.css */
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  background-color: #f9f9f9; /* Fond gris clair pour la page */
+  min-height: calc(
+    100vh - 250px
+  ); /* Prend la hauteur de l'écran moins le header/footer */
+}
+
+.register-form-wrapper {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.register-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.register-subtitle {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.register-form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Important pour que le padding ne casse pas la largeur */
+}
+
+.form-group.privacy-policy {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Style spécifique pour la checkbox */
+.form-group.privacy-policy input[type="checkbox"] {
+  width: auto; /* La checkbox n'a pas besoin de prendre 100% de la largeur */
+}
+
+.form-group.privacy-policy label {
+  margin-bottom: 0; /* On retire la marge du bas pour cette étiquette */
+  font-weight: normal;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffd700; /* Notre jaune signature */
+  color: #4a4a4a;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.submit-button:hover {
+  background-color: #ffc107; /* Notre orange doré au survol */
+}

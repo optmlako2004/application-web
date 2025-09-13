@@ -1,0 +1,105 @@
+/* src/components/Footer.css */
+.app-footer {
+  /* Fond gris très clair pour une séparation douce */
+  background-color: #f9f9f9;
+  color: #4a4a4a; /* Texte sombre */
+  padding-top: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  border-top: 1px solid #eee; /* Ligne de séparation fine */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 0 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  margin-bottom: 20px;
+}
+
+.footer-section h4 {
+  color: #4a4a4a;
+  /* Souligné avec notre nouvel orange doré/ambré */
+  border-bottom: 2px solid #ffc107;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li a {
+  color: #666; /* Gris un peu plus clair pour les liens */
+  text-decoration: none;
+  line-height: 2;
+  font-size: 14px;
+}
+
+.subscribe-section input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.subscribe-section button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffd700; /* Bouton jaune */
+  color: #4a4a4a;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #eee; /* Séparation fine */
+  font-size: 12px;
+  color: #666;
+}
+
+.footer-app-badges {
+  display: flex;
+  flex-direction: column; /* Les badges s'empilent verticalement dans le footer */
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.footer-badge-img {
+  height: 40px; /* Taille des badges dans le footer */
+  width: auto;
+}
+
+/* Ajustement pour aligner les badges horizontalement sur grands écrans si souhaité */
+@media (min-width: 1024px) {
+  .footer-app-badges {
+    flex-direction: row; /* Alignement horizontal sur grands écrans */
+    justify-content: flex-start; /* Aligner à gauche */
+  }
+}
+
+/* --- Styles pour les écrans mobiles --- */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Les colonnes du footer s'empilent */
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-app-badges {
+    flex-direction: row; /* Garder les badges en ligne */
+    justify-content: center;
+  }
+}

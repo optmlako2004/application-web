@@ -1,0 +1,138 @@
+/* src/pages/AboutPage.css */
+
+.about-page {
+  padding: 60px 20px;
+  background-color: #ffffff;
+}
+
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.about-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+
+.about-header .subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.story-section,
+.apps-section,
+.cta-section {
+  margin-bottom: 60px;
+}
+
+.story-section h2,
+.apps-section h2,
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.story-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.app-card {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 10px;
+  border-left: 5px solid #ffc107;
+}
+
+.app-card h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.app-card p {
+  line-height: 1.7;
+  color: #555;
+}
+
+.cta-section {
+  text-align: center;
+}
+
+.app-badges {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Permet aux badges de passer à la ligne sur petits écrans */
+}
+
+.app-badge-img {
+  height: 50px; /* Ajustez la taille si nécessaire */
+  width: auto;
+  transition: transform 0.2s ease-in-out;
+}
+
+.app-badge-img:hover {
+  transform: scale(1.05);
+}
+
+.qrcode-section {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.qrcode-section p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.qrcode-img {
+  width: 180px; /* Taille du QR code */
+  height: auto;
+  border: 1px solid #eee; /* Petite bordure pour le délimiter */
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.qrcode-note {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 10px;
+}
+
+/* Pour les écrans plus petits */
+@media (max-width: 768px) {
+  .apps-grid {
+    grid-template-columns: 1fr;
+  }
+  .app-badges {
+    flex-direction: column; /* Les badges s'empilent */
+    align-items: center;
+  }
+  .app-badge-img {
+    height: 45px; /* Ajustement pour mobile */
+  }
+  .qrcode-img {
+    width: 150px; /* Ajustement pour mobile */
+  }
+}

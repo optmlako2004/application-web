@@ -1,0 +1,140 @@
+/* src/components/Header.css */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.logo {
+  height: 50px;
+}
+
+.desktop-nav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  gap: 30px;
+}
+
+.nav-links a,
+.nav-links .logout-button,
+.nav-links a:visited {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* ✅ renommé */
+.contact-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.contact-button {
+  background-color: #ffd700;
+  color: #111;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.logout-button:hover {
+  text-decoration: underline;
+}
+
+/* --- Responsive --- */
+.hamburger-menu {
+  display: none;
+}
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .desktop-nav,
+  .contact-header-container {
+    display: none; /* cacher nav + bouton contact en mobile */
+  }
+
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+  }
+
+  .hamburger-menu .bar {
+    width: 2rem;
+    height: 0.25rem;
+    background: #333;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+  }
+
+  .mobile-nav {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100vh;
+    background: white;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding-top: 100px;
+  }
+
+  .mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .mobile-nav-links a,
+  .mobile-nav-links .logout-button {
+    font-size: 1.5rem;
+  }
+
+  .mobile-contact-link {
+    background-color: #ffd700;
+    color: #111;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+}
