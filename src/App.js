@@ -17,6 +17,7 @@ import BlogPage from "./pages/BlogPage.js";
 import SinglePostPage from "./pages/SinglePostPage.js";
 import ContactPage from "./pages/ContactPage.js";
 import AboutPage from "./pages/AboutPage.js";
+import ProfessionalPage from "./pages/ProfessionalPage.js";
 
 function App() {
   useEffect(() => {
@@ -42,6 +43,7 @@ function App() {
           <Route path="/blog/:slug" element={<SinglePostPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/a-propos" element={<AboutPage />} />
+          <Route path="/espace-professionnel" element={<ProfessionalPage />} />
         </Routes>
 
         <Footer />

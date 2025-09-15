@@ -3,9 +3,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
-// Importez les images des badges pour le footer
 import appStoreBadge from "../assets/appstore.webp";
 import googlePlayBadge from "../assets/playstore.webp";
+
+// Logos réseaux sociaux
+import facebookLogo from "../assets/facebook.png";
+import instagramLogo from "../assets/instagram.png";
+import tiktokLogo from "../assets/tiktok.png";
+
+// Icônes pour les liens du menu
+import {
+  FaHome,
+  FaTruck,
+  FaBlog,
+  FaPhoneAlt,
+  FaUserTie,
+  FaSignInAlt,
+  FaInfoCircle,
+} from "react-icons/fa";
 
 function Footer() {
   const appStoreLink =
@@ -16,11 +31,98 @@ function Footer() {
   return (
     <footer className="app-footer">
       <div className="footer-content">
+        {/* Brand */}
+        <div className="footer-section footer-brand">
+          <h4>Follow My Truck</h4>
+          <p>
+            La plateforme qui connecte les passionnés de street-food avec les
+            meilleurs food trucks.
+          </p>
+          <div className="social-links">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <img src={facebookLogo} alt="Facebook" />
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <img src={instagramLogo} alt="Instagram" />
+            </a>
+            <a
+              href="https://tiktok.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+            >
+              <img src={tiktokLogo} alt="TikTok" />
+            </a>
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <div className="footer-section">
+          <h4>Navigation</h4>
+          <ul>
+            <li>
+              <Link to="/">
+                <FaHome className="footer-icon" /> Accueil
+              </Link>
+            </li>
+            <li>
+              <Link to="/food-trucks">
+                <FaTruck className="footer-icon" /> Trouver un Food Truck
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog">
+                <FaBlog className="footer-icon" /> Blog
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact">
+                <FaPhoneAlt className="footer-icon" /> Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Professionnels */}
+        <div className="footer-section">
+          <h4>Professionnels</h4>
+          <ul>
+            <li>
+              <Link to="/espace-professionnel">
+                <FaUserTie className="footer-icon" /> Inscrire mon Food Truck
+              </Link>
+            </li>
+            <li>
+              <Link to="/connexion">
+                <FaSignInAlt className="footer-icon" /> Connexion Vendeur
+              </Link>
+            </li>
+            <li>
+              <Link to="/a-propos">
+                <FaInfoCircle className="footer-icon" /> À propos
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Newsletter */}
         <div className="footer-section subscribe-section">
-          <h4>Restez Connecté</h4> {/* Nouveau titre pour cette section */}
-          <input type="email" placeholder="Votre Email" />
-          <button>S'INSCRIRE</button>
-          {/* NOUVEAU : Les badges dans le footer */}
+          <h4>Rejoignez-nous</h4>
+          <p>Recevez nos nouveautés et promotions directement par email.</p>
+          <div className="subscribe-form">
+            <input type="email" placeholder="Votre Email" />
+            <button>S'INSCRIRE</button>
+          </div>
           <div className="footer-app-badges">
             <a href={appStoreLink} target="_blank" rel="noopener noreferrer">
               <img
@@ -38,50 +140,8 @@ function Footer() {
             </a>
           </div>
         </div>
-        <div className="footer-section">
-          <h4>Nav</h4>
-          <ul>
-            <li>
-              <Link to="/">Accueil</Link>
-            </li>
-            <li>
-              <Link to="/inscription">S'inscrire</Link>
-            </li>
-            <li>
-              <Link to="/connexion">Se connecter</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-section">
-          <h4>Vendeurs</h4>
-          <ul>
-            <li>
-              <Link to="/vendeurs/inscription">Inscrire mon Food Truck</Link>
-            </li>
-            <li>
-              <a href="#">Suivi GPS</a>
-            </li>{" "}
-            {/* Garder les liens non créés comme <a> pour l'instant */}
-            <li>
-              <Link to="/connexion">Connexion Vendeur</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-section">
-          <h4>Compagnie</h4>
-          <ul>
-            <li>
-              <Link to="/a-propos">À propos</Link>
-            </li>
-            <li>
-              <Link to="/blog">Blog</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-          </ul>
-        </div>
       </div>
+
       <div className="footer-bottom">
         <p>Copyright © 2025 Follow My Truck</p>
       </div>

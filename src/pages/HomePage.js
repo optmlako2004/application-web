@@ -1,6 +1,9 @@
 // src/pages/HomePage.js
 import React from "react";
+import { Link } from "react-router-dom";
 import "./HomePage.css";
+
+import { FaUtensils, FaTruckMoving } from "react-icons/fa";
 
 // Images des villes
 import parisImage from "../assets/paris.jpg";
@@ -9,9 +12,7 @@ import marseilleImage from "../assets/marseille.jpg";
 
 // Mettre à jour les imports des maquettes avec les nouveaux fichiers
 import finalMockupMap from "../assets/app-map.png";
-import finalMockupMenu from "../assets/app-menu.png";
-
-// L'import du cadre du smartphone n'est plus nécessaire
+import professionalMockup from "../assets/acceuil.png";
 
 const cities = [
   {
@@ -48,21 +49,20 @@ function HomePage() {
           <p>
             Découvrez, savourez, et ne manquez plus jamais votre camion préféré.
           </p>
-          <div className="search-bar">
-            <input
-              type="text"
-              placeholder="Entrez une ville, un code postal..."
-            />
-            <button>CHERCHER</button>
+          <div className="hero-cta-buttons">
+            <Link to="/food-trucks" className="cta-button primary">
+              Trouver un Food Truck
+            </Link>
+            <Link to="/espace-professionnel" className="cta-button secondary">
+              Je suis un Professionnel
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Section "Comment ça marche ?" avec le code simplifié */}
       <section className="how-it-works-section">
         <div className="feature-row">
           <div className="feature-image-wrapper" data-aos="fade-right">
-            {/* STRUCTURE SIMPLIFIÉE : un seul tag <img> suffit maintenant */}
             <img
               src={finalMockupMap}
               alt="Maquette de la carte de l'application"
@@ -70,6 +70,8 @@ function HomePage() {
             />
           </div>
           <div className="feature-text-content" data-aos="fade-up">
+            {/* ON DÉPLACE L'ICÔNE ICI, en dehors du h3 */}
+            <FaUtensils className="feature-card-icon" />
             <h3>Pour les Gourmands</h3>
             <p>
               Explorez la carte en temps réel, découvrez de nouvelles saveurs
@@ -81,19 +83,20 @@ function HomePage() {
 
         <div className="feature-row reverse">
           <div className="feature-image-wrapper" data-aos="fade-left">
-            {/* STRUCTURE SIMPLIFIÉE : un seul tag <img> suffit maintenant */}
             <img
-              src={finalMockupMenu}
-              alt="Maquette du menu de l'application"
+              src={professionalMockup}
+              alt="Maquette de l'application FoodTrucksView Driver"
               className="final-mockup-image"
             />
           </div>
           <div className="feature-text-content" data-aos="fade-up">
+            {/* ON DÉPLACE L'ICÔNE ICI, en dehors du h3 */}
+            <FaTruckMoving className="feature-card-icon" />
             <h3>Pour les Professionnels</h3>
             <p>
-              Augmentez votre visibilité, partagez votre position instantanément
-              sans effort et fidélisez votre clientèle en l'informant de vos
-              déplacements et de vos promotions.
+              Gagnez en visibilité, partagez votre position en temps réel et
+              mettez à jour vos horaires en quelques clics. Notre application
+              Driver est conçue pour vous simplifier la vie.
             </p>
           </div>
         </div>

@@ -2,27 +2,29 @@
 
 .about-page {
   padding: 60px 20px;
-  background-color: #ffffff;
+  background-color: var(--white); /* Fond blanc pour un look épuré */
 }
 
 .about-container {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .about-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .about-header h1 {
-  font-size: 2.8rem;
+  font-size: 3rem;
+  font-weight: 700;
   margin-bottom: 15px;
+  color: var(--dark-text);
 }
 
 .about-header .subtitle {
   font-size: 1.2rem;
-  color: #666;
+  color: var(--body-text);
   max-width: 700px;
   margin: 0 auto;
 }
@@ -30,24 +32,54 @@
 .story-section,
 .apps-section,
 .cta-section {
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
+/* ON MODIFIE : Le style des titres de section */
 .story-section h2,
 .apps-section h2,
 .cta-section h2 {
-  font-size: 2rem;
-  margin-bottom: 25px;
-  border-bottom: 2px solid #ffd700;
-  padding-bottom: 10px;
-  display: inline-block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--dark-text);
+  margin-bottom: 40px;
+  text-align: center;
 }
 
-.story-section p {
+/* ON AJOUTE : La grille pour la section histoire */
+.story-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.story-text p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #444;
+  color: var(--body-text);
   margin-bottom: 20px;
+}
+
+.founder-image-placeholder {
+  /* Style pour la photo temporaire */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 350px;
+  background-color: var(--background-light);
+  border-radius: 16px;
+  color: var(--body-text);
+  font-style: italic;
+}
+
+.founder-image {
+  /* Style pour la vraie photo */
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .apps-grid {
@@ -56,21 +88,29 @@
   gap: 40px;
 }
 
+/* ON MODIFIE : Le style des cartes d'application */
 .app-card {
-  background-color: #f9f9f9;
+  background-color: var(--background-light);
   padding: 30px;
-  border-radius: 10px;
-  border-left: 5px solid #ffc107;
+  border-radius: 16px;
+  border: 1px solid #f0f0f0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
 }
 
 .app-card h3 {
   margin-top: 0;
   font-size: 1.5rem;
+  color: var(--dark-text);
 }
 
 .app-card p {
   line-height: 1.7;
-  color: #555;
+  color: var(--body-text);
 }
 
 .cta-section {
@@ -82,11 +122,11 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  flex-wrap: wrap; /* Permet aux badges de passer à la ligne sur petits écrans */
+  flex-wrap: wrap;
 }
 
 .app-badge-img {
-  height: 50px; /* Ajustez la taille si nécessaire */
+  height: 55px;
   width: auto;
   transition: transform 0.2s ease-in-out;
 }
@@ -103,36 +143,25 @@
 .qrcode-section p {
   font-size: 1.1rem;
   margin-bottom: 15px;
-  color: #333;
+  color: var(--dark-text);
 }
 
 .qrcode-img {
-  width: 180px; /* Taille du QR code */
+  width: 180px;
   height: auto;
-  border: 1px solid #eee; /* Petite bordure pour le délimiter */
-  border-radius: 5px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.qrcode-note {
-  font-size: 0.9rem;
-  color: #888;
-  margin-top: 10px;
+/* Responsive */
+@media (max-width: 992px) {
+  .story-grid {
+    grid-template-columns: 1fr; /* La photo passe sous le texte */
+  }
 }
 
-/* Pour les écrans plus petits */
 @media (max-width: 768px) {
   .apps-grid {
     grid-template-columns: 1fr;
-  }
-  .app-badges {
-    flex-direction: column; /* Les badges s'empilent */
-    align-items: center;
-  }
-  .app-badge-img {
-    height: 45px; /* Ajustement pour mobile */
-  }
-  .qrcode-img {
-    width: 150px; /* Ajustement pour mobile */
   }
 }

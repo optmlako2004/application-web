@@ -1,0 +1,225 @@
+/* src/pages/ProfessionalPage.css */
+
+/* --- Héros de la Page Pro --- */
+.pro-hero {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: var(--background-light);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.pro-hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--dark-text);
+  margin-bottom: 20px;
+}
+
+.pro-hero-content .subtitle {
+  font-size: 1.3rem;
+  color: var(--body-text);
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+}
+
+/* --- Badges des Stores --- */
+.app-badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.badge-img {
+  height: 60px;
+  transition: transform 0.2s ease;
+}
+
+.badge-img:hover {
+  transform: scale(1.05);
+}
+
+/* --- Section des Fonctionnalités --- */
+.pro-features {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: var(--background-light);
+}
+
+.pro-features h2 {
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  color: var(--dark-text);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ON MODIFIE ICI : On retire l'effet de survol de la carte elle-même */
+.feature-card {
+  border-radius: 16px;
+  padding: 20px;
+  background: none;
+  border: none;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* ON RETIRE L'ANCIEN : .feature-card:hover */
+
+/* ON MODIFIE ICI : On ajoute une transition à l'image */
+.feature-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Ajout de la transition */
+}
+
+/* ON AJOUTE ICI : L'effet de survol se fait sur l'image quand on survole la carte */
+.feature-card:hover .feature-img {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--dark-text);
+}
+
+.feature-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--body-text);
+}
+
+/* --- Section des Avantages --- */
+.pro-benefits {
+  padding: 80px 20px;
+  background-color: var(--white);
+}
+
+.pro-benefits h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: var(--dark-text);
+}
+
+.pro-benefits ul {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pro-benefits li {
+  font-size: 1.2rem;
+  color: var(--body-text);
+  margin-bottom: 20px;
+  line-height: 1.5;
+  opacity: 0;
+  animation: popIn 0.5s ease-out forwards;
+}
+
+/* --- Dernier Appel à l'Action --- */
+.pro-cta-final {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: var(--dark-text);
+  color: var(--white);
+}
+
+.pro-cta-final h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  animation: subtlePulse 2.5s ease-in-out infinite;
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .pro-hero-content h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ON MODIFIE ICI : On ajoute 'opacity: 1' à la fin de l'animation */
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1; /* ✅ Garantit que l'élément reste visible */
+  }
+}
+
+@keyframes subtlePulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* --- Délais animations --- */
+.features-grid .feature-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.features-grid .feature-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.features-grid .feature-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.features-grid .feature-card:n-child(4) {
+  animation-delay: 0.4s;
+}
+
+.pro-benefits li:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.pro-benefits li:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.pro-benefits li:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.pro-benefits li:nth-child(4) {
+  animation-delay: 0.8s;
+}

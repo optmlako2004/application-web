@@ -1,34 +1,33 @@
 /* src/components/Footer.css */
 .app-footer {
-  /* Fond gris très clair pour une séparation douce */
-  background-color: #f9f9f9;
-  color: #4a4a4a; /* Texte sombre */
-  padding-top: 40px;
+  background-color: var(--white);
+  color: var(--body-text);
+  padding-top: 60px;
   width: 100%;
   box-sizing: border-box;
-  border-top: 1px solid #eee; /* Ligne de séparation fine */
+  border-top: 1px solid #e0e0e0;
 }
 
 .footer-content {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
   padding: 0 40px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-.footer-section {
+.footer-section h4 {
+  color: var(--dark-text);
   margin-bottom: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.footer-section h4 {
-  color: #4a4a4a;
-  /* Souligné avec notre nouvel orange doré/ambré */
-  border-bottom: 2px solid #ffc107;
-  padding-bottom: 5px;
-  margin-bottom: 15px;
-  font-size: 18px;
+.footer-section p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .footer-section ul {
@@ -37,69 +36,134 @@
   margin: 0;
 }
 
+/* ON MODIFIE ICI 👇 */
 .footer-section ul li a {
-  color: #666; /* Gris un peu plus clair pour les liens */
+  color: var(--body-text);
   text-decoration: none;
-  line-height: 2;
-  font-size: 14px;
+  line-height: 2.2;
+  font-size: 0.9rem;
+  /* On ajoute 'transform' à la transition pour un mouvement fluide */
+  transition: color 0.2s ease, transform 0.2s ease;
+  /* On ajoute ces lignes pour bien aligner l'icône et le texte */
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ON MODIFIE ICI 👇 */
+.footer-section ul li a:hover {
+  color: var(--primary-color);
+  /* On ajoute un léger mouvement vers le haut au survol */
+  transform: translateY(-2px);
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--background-light);
+  color: var(--dark-text);
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.social-links a img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.subscribe-form {
+  display: flex;
+  margin-bottom: 20px;
 }
 
 .subscribe-section input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px;
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 50px 0 0 50px;
+  background-color: var(--background-light);
+  font-size: 0.9rem;
+}
+
+.subscribe-section input:focus {
+  outline: none;
+  border-color: var(--primary-color);
 }
 
 .subscribe-section button {
-  padding: 10px 20px;
+  padding: 12px 25px;
   border: none;
-  border-radius: 5px;
-  background-color: #ffd700; /* Bouton jaune */
-  color: #4a4a4a;
-  font-weight: bold;
+  border-radius: 0 50px 50px 0;
+  background-color: var(--primary-color);
+  color: var(--dark-text);
+  font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.footer-bottom {
-  text-align: center;
-  padding: 20px;
-  margin-top: 20px;
-  border-top: 1px solid #eee; /* Séparation fine */
-  font-size: 12px;
-  color: #666;
+.subscribe-section button:hover {
+  background-color: var(--primary-hover);
 }
 
 .footer-app-badges {
   display: flex;
-  flex-direction: column; /* Les badges s'empilent verticalement dans le footer */
-  gap: 10px;
+  gap: 15px;
   margin-top: 20px;
 }
 
 .footer-badge-img {
-  height: 40px; /* Taille des badges dans le footer */
+  height: 45px;
   width: auto;
+  transition: opacity 0.2s ease;
 }
 
-/* Ajustement pour aligner les badges horizontalement sur grands écrans si souhaité */
-@media (min-width: 1024px) {
-  .footer-app-badges {
-    flex-direction: row; /* Alignement horizontal sur grands écrans */
-    justify-content: flex-start; /* Aligner à gauche */
-  }
+.footer-badge-img:hover {
+  opacity: 0.8;
 }
 
-/* --- Styles pour les écrans mobiles --- */
+.footer-bottom {
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.8rem;
+  color: #999;
+}
+
 @media (max-width: 768px) {
   .footer-content {
-    flex-direction: column; /* Les colonnes du footer s'empilent */
-    align-items: center;
+    grid-template-columns: 1fr;
     text-align: center;
   }
 
-  .footer-app-badges {
-    flex-direction: row; /* Garder les badges en ligne */
+  .social-links {
     justify-content: center;
   }
+
+  /* On s'assure que les liens restent bien alignés sur mobile */
+  .footer-section ul li a {
+    justify-content: center;
+  }
+}
+
+.footer-icon {
+  margin-right: 8px; /* Un peu plus d'espace */
+  font-size: 1rem;
+  vertical-align: middle;
 }

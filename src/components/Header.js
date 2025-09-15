@@ -31,8 +31,15 @@ function Header() {
       {/* Navigation desktop */}
       <nav className="desktop-nav">
         <ul className="nav-links">
+          {/* ON AJOUTE : Le lien vers la page d'accueil */}
+          <li>
+            <Link to="/">Accueil</Link>
+          </li>
           <li>
             <Link to="/food-trucks">Trouver un Food Truck</Link>
+          </li>
+          <li>
+            <Link to="/espace-professionnel">Espace Pro</Link>
           </li>
           <li>
             <Link to="/blog">Blog</Link>
@@ -61,14 +68,12 @@ function Header() {
         </ul>
       </nav>
 
-      {/* ✅ renommage ici */}
       <div className="contact-header-container">
         <Link to="/contact" className="contact-button">
           CONTACT
         </Link>
       </div>
 
-      {/* Menu hamburger */}
       <button
         className="hamburger-menu"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -82,9 +87,20 @@ function Header() {
       {isMenuOpen && (
         <nav className="mobile-nav">
           <ul className="mobile-nav-links">
+            {/* ON AJOUTE : Le même lien pour le menu mobile */}
+            <li>
+              <Link to="/" onClick={closeMenu}>
+                Accueil
+              </Link>
+            </li>
             <li>
               <Link to="/food-trucks" onClick={closeMenu}>
                 Trouver un Food Truck
+              </Link>
+            </li>
+            <li>
+              <Link to="/espace-professionnel" onClick={closeMenu}>
+                Espace Pro
               </Link>
             </li>
             <li>

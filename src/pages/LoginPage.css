@@ -5,15 +5,15 @@
   justify-content: center;
   align-items: center;
   padding: 80px 20px;
-  background-color: #f9f9f9;
+  background-color: var(--background-light);
   min-height: calc(100vh - 250px);
 }
 
 .login-form-wrapper {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+  padding: 50px;
+  border-radius: 16px; /* Bords plus arrondis */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   max-width: 450px;
   width: 100%;
   text-align: center;
@@ -21,8 +21,9 @@
 
 .login-title {
   font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: 30px;
-  color: #333;
+  color: var(--dark-text);
 }
 
 .login-form {
@@ -36,18 +37,27 @@
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  font-weight: bold;
-  color: #555;
+  font-weight: 600;
+  color: var(--dark-text);
 }
 
+/* ON MODIFIE : Style unifié pour les champs de saisie */
 .form-group input[type="email"],
 .form-group input[type="password"] {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 1rem;
   box-sizing: border-box;
+  background-color: var(--background-light);
+  transition: border-color 0.2s ease;
+}
+
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
 }
 
 .form-group.remember-me {
@@ -63,38 +73,45 @@
 .form-group.remember-me label {
   margin-bottom: 0;
   font-weight: normal;
+  color: var(--body-text);
 }
 
+/* ON MODIFIE : Le bouton principal pour correspondre au reste du site */
 .submit-button {
   width: 100%;
   padding: 15px;
   border: none;
-  border-radius: 5px;
-  background-color: #ffd700;
-  color: #4a4a4a;
+  border-radius: 50px; /* Style "pilule" */
+  background-color: var(--primary-color);
+  color: var(--dark-text);
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
   margin-top: 10px;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #ffc107;
+  background-color: var(--primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-links {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 25px;
   font-size: 0.9rem;
 }
 
+/* ON MODIFIE : Style des liens pour être plus subtil */
 .form-links a {
-  color: #337ab7;
+  color: var(--body-text);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .form-links a:hover {
+  color: var(--primary-color);
   text-decoration: underline;
 }

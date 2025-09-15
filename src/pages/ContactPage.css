@@ -5,54 +5,114 @@
   justify-content: center;
   align-items: center;
   padding: 80px 20px;
-  background-color: #f9f9f9;
+  background-color: var(--background-light);
   min-height: calc(100vh - 250px);
 }
 
-.contact-form-wrapper {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
+/* ON AJOUTE : Une grille pour séparer le formulaire et les infos */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Deux colonnes de taille égale */
+  gap: 50px;
+  background-color: var(--white);
+  padding: 50px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  max-width: 1100px;
   width: 100%;
 }
 
 .contact-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 30px;
 }
 
 .contact-header h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
+  color: var(--dark-text);
 }
 
 .contact-header p {
-  color: #666;
+  color: var(--body-text);
+  font-size: 1.1rem;
 }
 
 .contact-form {
   text-align: left;
 }
 
-.form-group textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-  box-sizing: border-box;
-  font-family: inherit;
-  resize: vertical;
+/* ON AJOUTE : Style pour la colonne d'informations */
+.contact-info h3 {
+  font-size: 1.5rem;
+  color: var(--dark-text);
+  margin-bottom: 20px;
+}
+.contact-info p {
+  line-height: 1.8;
+  color: var(--body-text);
+  margin-bottom: 15px;
 }
 
-/* On peut réutiliser les styles des autres formulaires */
-.form-group,
-.form-group label,
+/* ON MODIFIE : Styles des champs de formulaire pour la cohérence */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark-text);
+}
+
 .form-group input,
-.submit-button,
+.form-group textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px; /* Bords légèrement arrondis */
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: var(--background-light);
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.form-group textarea {
+  font-family: inherit;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 50px; /* Bouton "pilule" */
+  background-color: var(--primary-color);
+  color: var(--dark-text);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
 .submit-button:hover {
-  /* Ces styles sont déjà définis dans LoginPage.css ou RegisterPage.css */
-  /* Si vous avez un fichier CSS global, mettez-les là-bas */
+  background-color: var(--primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Responsive pour la page contact --- */
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+  }
 }

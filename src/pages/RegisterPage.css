@@ -5,17 +5,15 @@
   justify-content: center;
   align-items: center;
   padding: 80px 20px;
-  background-color: #f9f9f9; /* Fond gris clair pour la page */
-  min-height: calc(
-    100vh - 250px
-  ); /* Prend la hauteur de l'écran moins le header/footer */
+  background-color: var(--background-light);
+  min-height: calc(100vh - 250px);
 }
 
 .register-form-wrapper {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+  padding: 50px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   max-width: 500px;
   width: 100%;
   text-align: center;
@@ -23,12 +21,13 @@
 
 .register-title {
   font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: 10px;
-  color: #333;
+  color: var(--dark-text);
 }
 
 .register-subtitle {
-  color: #666;
+  color: var(--body-text);
   margin-bottom: 30px;
 }
 
@@ -43,19 +42,29 @@
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  font-weight: bold;
-  color: #555;
+  font-weight: 600;
+  color: var(--dark-text);
 }
 
+/* ON MODIFIE : Style unifié pour les champs de saisie */
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"] {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 1rem;
-  box-sizing: border-box; /* Important pour que le padding ne casse pas la largeur */
+  box-sizing: border-box;
+  background-color: var(--background-light);
+  transition: border-color 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
 }
 
 .form-group.privacy-policy {
@@ -64,30 +73,34 @@
   gap: 10px;
 }
 
-/* Style spécifique pour la checkbox */
 .form-group.privacy-policy input[type="checkbox"] {
-  width: auto; /* La checkbox n'a pas besoin de prendre 100% de la largeur */
+  width: auto;
 }
 
 .form-group.privacy-policy label {
-  margin-bottom: 0; /* On retire la marge du bas pour cette étiquette */
+  margin-bottom: 0;
   font-weight: normal;
+  color: var(--body-text);
+  font-size: 0.9rem;
 }
 
+/* ON MODIFIE : Le bouton principal pour correspondre au reste du site */
 .submit-button {
   width: 100%;
   padding: 15px;
   border: none;
-  border-radius: 5px;
-  background-color: #ffd700; /* Notre jaune signature */
-  color: #4a4a4a;
+  border-radius: 50px; /* Style "pilule" */
+  background-color: var(--primary-color);
+  color: var(--dark-text);
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
   margin-top: 10px;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #ffc107; /* Notre orange doré au survol */
+  background-color: var(--primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
