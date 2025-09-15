@@ -9,6 +9,21 @@ function BlogPage() {
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
+    // Transformer les mockPosts pour qu'ils aient la même structure que Sanity
+    const transformedMockPosts = mockPosts.map((mockPost) => ({
+      title: mockPost.title,
+      slug: { current: mockPost.slug },
+      authorName: mockPost.author,
+      authorImage: mockPost.authorImage || null,
+      mainImageUrl: mockPost.image,
+      publishedAt: mockPost.date,
+      excerpt: mockPost.excerpt,
+      body: mockPost.content,
+    }));
+
+    // 👉 Afficher les mockPosts par défaut (au cas où Sanity est vide)
+    setPosts(transformedMockPosts);
+
     async function fetchAndCombinePosts() {
       try {
         // Récupération des articles depuis Sanity
@@ -25,22 +40,10 @@ function BlogPage() {
           }`
         );
 
-        // Transformation des posts mock pour avoir la même structure
-        const transformedMockPosts = mockPosts.map((mockPost) => ({
-          title: mockPost.title,
-          slug: { current: mockPost.slug },
-          authorName: mockPost.author,
-          authorImage: mockPost.authorImage || null,
-          mainImageUrl: mockPost.image,
-          publishedAt: mockPost.date,
-          excerpt: mockPost.excerpt,
-          body: mockPost.content,
-        }));
-
-        // Fusion des deux sources
+        // Fusion Sanity + mock
         const allPosts = [...sanityData, ...transformedMockPosts];
 
-        // Normalisation et tri des dates
+        // Normaliser et trier par date
         const postsWithDate = allPosts.map((p) => {
           let date = p.publishedAt || p.date;
           return {
