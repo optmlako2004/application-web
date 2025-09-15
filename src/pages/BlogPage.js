@@ -11,6 +11,7 @@ function BlogPage() {
   useEffect(() => {
     async function fetchAndCombinePosts() {
       try {
+        // Récupération des articles depuis Sanity
         const sanityData = await sanityClient.fetch(
           `*[_type == "post"]{
             title,
@@ -24,6 +25,7 @@ function BlogPage() {
           }`
         );
 
+        // Transformation des posts mock pour avoir la même structure
         const transformedMockPosts = mockPosts.map((mockPost) => ({
           title: mockPost.title,
           slug: { current: mockPost.slug },
@@ -35,7 +37,21 @@ function BlogPage() {
           body: mockPost.content,
         }));
 
-        setPosts([...sanityData, ...transformedMockPosts]);
+        // Fusion des deux sources
+        const allPosts = [...sanityData, ...transformedMockPosts];
+
+        // Normalisation et tri des dates
+        const postsWithDate = allPosts.map((p) => {
+          let date = p.publishedAt || p.date;
+          return {
+            ...p,
+            _sortDate: new Date(date).getTime() || 0,
+          };
+        });
+
+        postsWithDate.sort((a, b) => b._sortDate - a._sortDate);
+
+        setPosts(postsWithDate);
       } catch (error) {
         console.error("Erreur lors de la récupération des articles:", error);
       }
