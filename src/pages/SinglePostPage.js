@@ -12,6 +12,7 @@ function SinglePostPage() {
   useEffect(() => {
     async function fetchPost() {
       try {
+        // Récupération depuis Sanity
         const sanityPosts = await sanityClient.fetch(
           `*[_type == "post" && slug.current == $slug][0]{
             title,
@@ -31,11 +32,20 @@ function SinglePostPage() {
           return;
         }
 
-        const mockPost = mockPosts.find((p) => p.slug === slug);
+        // Recherche dans les mockPosts
+        const mockPost = mockPosts.find(
+          (p) => p.slug === slug || p.slug?.current === slug
+        );
+
         if (mockPost) {
           setPost({
             title: mockPost.title,
-            slug: { current: mockPost.slug },
+            slug: {
+              current:
+                typeof mockPost.slug === "string"
+                  ? mockPost.slug
+                  : mockPost.slug.current,
+            },
             authorName: mockPost.author,
             authorImage: mockPost.authorImage || null,
             mainImageUrl: mockPost.image,
