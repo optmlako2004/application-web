@@ -1,5 +1,5 @@
 // src/components/Footer.js
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
@@ -27,6 +27,46 @@ function Footer() {
     "https://apps.apple.com/fr/app/foodtrucks-driver/id6749314863";
   const googlePlayLink =
     "https://play.google.com/store/apps/details?id=com.arkone.foodtruckviewdriver";
+
+  // On ajoute un état pour le statut du message ('success' ou 'error')
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [messageStatus, setMessageStatus] = useState(""); // NOUVEL ÉTAT
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setMessage("");
+    setMessageStatus(""); // On réinitialise le statut
+
+    try {
+      const response = await fetch("http://localhost:3001/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Une erreur est survenue.");
+      }
+
+      // En cas de succès, on définit le message et le statut
+      setMessage("Merci ! Votre inscription a bien été prise en compte.");
+      setMessageStatus("success"); // STATUT SUCCÈS
+      setEmail("");
+    } catch (error) {
+      // En cas d'erreur, on définit le message et le statut
+      setMessage(error.message);
+      setMessageStatus("error"); // STATUT ERREUR
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <footer className="app-footer">
@@ -119,10 +159,25 @@ function Footer() {
         <div className="footer-section subscribe-section">
           <h4>Rejoignez-nous</h4>
           <p>Recevez nos nouveautés et promotions directement par email.</p>
-          <div className="subscribe-form">
-            <input type="email" placeholder="Votre Email" />
-            <button>NEWSLETTER</button>
-          </div>
+          <form className="subscribe-form" onSubmit={handleSubscribe}>
+            <input
+              type="email"
+              placeholder="Votre Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              disabled={isLoading}
+            />
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? "ENVOI..." : "NEWSLETTER"}
+            </button>
+          </form>
+
+          {/* On applique dynamiquement la classe CSS en fonction du statut */}
+          {message && (
+            <p className={`subscribe-message ${messageStatus}`}>{message}</p>
+          )}
+
           <div className="footer-app-badges">
             <a href={appStoreLink} target="_blank" rel="noopener noreferrer">
               <img

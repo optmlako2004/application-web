@@ -167,3 +167,23 @@
   font-size: 1rem;
   vertical-align: middle;
 }
+
+/* --- STYLES POUR LES MESSAGES DE LA NEWSLETTER --- */
+.subscribe-message {
+  font-size: 0.9rem;
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.subscribe-message.success {
+  background-color: #d1fae5; /* Vert pastel */
+  color: #065f46; /* Vert foncé */
+}
+
+.subscribe-message.error {
+  background-color: #fee2e2; /* Rouge pastel */
+  color: #991b1b; /* Rouge foncé */
+}
