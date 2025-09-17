@@ -121,7 +121,7 @@ function Footer() {
           <p>Recevez nos nouveautés et promotions directement par email.</p>
           <div className="subscribe-form">
             <input type="email" placeholder="Votre Email" />
-            <button>S'INSCRIRE</button>
+            <button>NEWSLETTER</button>
           </div>
           <div className="footer-app-badges">
             <a href={appStoreLink} target="_blank" rel="noopener noreferrer">
