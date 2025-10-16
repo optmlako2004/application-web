@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/jeme9699/public_html
+    - /bin/rsync -a --delete dist/ $DEPLOYPATH/
