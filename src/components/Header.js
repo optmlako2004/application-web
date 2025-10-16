@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "./Header.css";
-import logo from "../assets/ftv-Photoroom.png";
+import logo from "../assets/logo.png";
 
 function Header() {
   const { authState, logout } = useContext(AuthContext);
