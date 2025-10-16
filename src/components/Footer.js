@@ -73,7 +73,7 @@ function Footer() {
       <div className="footer-content">
         {/* Brand */}
         <div className="footer-section footer-brand">
-          <h4>FoodTrucksView</h4>
+          <h4>Foodmoodfrance</h4>
           <p>
             La plateforme qui connecte les passionnés de street-food avec les
             meilleurs food trucks.
@@ -198,7 +198,7 @@ function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>Copyright © 2025 FoodTrucksView</p>
+        <p>Copyright © 2025 Foodmoodfrance</p>
       </div>
     </footer>
   );

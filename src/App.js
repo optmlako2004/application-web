@@ -18,6 +18,9 @@ import SinglePostPage from "./pages/SinglePostPage.js";
 import ContactPage from "./pages/ContactPage.js";
 import AboutPage from "./pages/AboutPage.js";
 import ProfessionalPage from "./pages/ProfessionalPage.js";
+import ScrollToTop from "./components/ScrollToTop.js";
+
+// Composant principal de l'application
 
 function App() {
   useEffect(() => {
@@ -32,6 +35,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
+        <ScrollToTop />
 
         {/* 3. Définir la zone où les pages changeront */}
         <Routes>

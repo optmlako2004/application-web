@@ -65,7 +65,7 @@ function AboutPage() {
           <h2>Nos Deux Applications</h2>
           <div className="apps-grid">
             <div className="app-card">
-              <h3>FoodTrucksView</h3>
+              <h3>Foodmoodfrance</h3>
               <p>
                 Pour les amateurs de street-food. Géolocalisez les food trucks
                 en temps réel, consultez leurs menus et, bientôt, commandez en
@@ -73,7 +73,7 @@ function AboutPage() {
               </p>
             </div>
             <div className="app-card">
-              <h3>FoodTrucksView Driver</h3>
+              <h3>Foodmoodfrance Driver</h3>
               <p>
                 Pour les propriétaires. Partagez votre emplacement, gagnez en
                 visibilité et concentrez-vous sur votre cuisine.

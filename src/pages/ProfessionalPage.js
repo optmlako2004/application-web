@@ -107,7 +107,7 @@ function ProfessionalPage() {
 
       {/* --- Section des Avantages --- */}
       <section className="pro-benefits">
-        <h2>Les Avantages de FoodTrucksView Driver</h2>
+        <h2>Les Avantages de Foodmoodfrance Driver</h2>
         <ul>
           <li>
             ✅ <strong>Contrôle Total :</strong> Apparaissez ou disparaissez de

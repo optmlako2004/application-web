@@ -46,6 +46,26 @@
   color: var(--primary-color);
 }
 
+/* --- NOUVEAU : STYLE POUR LE LIEN ACTIF --- */
+.nav-links a.active {
+  color: var(--primary-color);
+  position: relative;
+}
+
+/* Petit trait de soulignement pour le lien actif sur ordinateur */
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+/* ------------------------------------------- */
+
 .contact-header-container {
   display: flex;
   align-items: center;
@@ -56,7 +76,7 @@
   background-color: var(--primary-color);
   color: var(--dark-text);
   padding: 10px 20px;
-  border-radius: 50px; /* Bouton pilule */
+  border-radius: 50px;
   text-decoration: none;
   font-weight: bold;
   white-space: nowrap;
@@ -85,40 +105,29 @@
 /* --- Responsive --- */
 @media (max-width: 992px) {
   .app-header {
-    /* On permet aux blocs de passer à la ligne */
     flex-wrap: wrap;
-    /* LA CLÉ : Pousse le premier (logo) et le dernier (contact) élément aux extrémités */
     justify-content: space-between;
-    /* Aligne verticalement le logo et le bouton sur la même ligne */
     align-items: center;
     padding: 15px 25px;
   }
   
-  /* On s'assure que le bouton contact reste bien visible */
   .contact-header-container {
       display: flex;
   }
 
-  /* La navigation est l'élément que nous voulons déplacer */
   .desktop-nav {
     display: flex;
-    /* On force la navigation à prendre 100% de la largeur, ce qui la fait passer à la ligne du dessous */
     flex-basis: 100%;
-    /* On s'assure qu'elle s'affiche visuellement en dernier */
     order: 3;
-    /* On ajoute un espace entre la ligne logo/contact et les liens de navigation */
     margin-top: 20px;
   }
 
   .nav-links {
-    /* On garde les liens en ligne et on les autorise à passer à la ligne entre eux si besoin */
     flex-direction: row;
     flex-wrap: wrap;
-    /* On centre les liens dans leur conteneur */
     justify-content: center;
-    /* On s'assure que le conteneur des liens prend toute la largeur disponible */
     width: 100%;
-    gap: 10px 15px; /* Espace vertical et horizontal entre les liens */
+    gap: 10px 15px;
   }
 
   .nav-links a,
@@ -126,8 +135,12 @@
     text-decoration: none;
     font-size: 14px;
   }
+  
+  /* On cache le trait de soulignement du lien actif sur mobile pour un look plus épuré */
+  .nav-links a.active::after {
+    display: none;
+  }
 
-  /* On cache définitivement le menu hamburger */
   .hamburger-menu,
   .mobile-nav {
     display: none !important;

@@ -17,11 +17,26 @@
   margin: 0 auto;
 }
 
+/* MODIFIÉ 👇 */
 .footer-section h4 {
   color: var(--dark-text);
-  margin-bottom: 20px;
-  font-size: 1.1rem;
+  margin-bottom: 25px; /* Un peu plus d'espace */
+  font-size: 1.2rem;   /* Légèrement plus grand */
   font-weight: 600;
+  position: relative;
+  padding-bottom: 10px; /* Espace pour le trait */
+}
+
+/* NOUVEAU : On ajoute un trait de style sous les titres */
+.footer-section h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px; /* Largeur du trait */
+  height: 3px;  /* Épaisseur du trait */
+  background-color: var(--primary-color);
+  border-radius: 2px;
 }
 
 .footer-section p {
@@ -36,23 +51,20 @@
   margin: 0;
 }
 
-/* ON MODIFIE ICI 👇 */
 .footer-section ul li a {
   color: var(--body-text);
   text-decoration: none;
   line-height: 2.2;
   font-size: 0.9rem;
-  /* On ajoute 'transform' à la transition pour un mouvement fluide */
   transition: color 0.2s ease, transform 0.2s ease;
-  /* On ajoute ces lignes pour bien aligner l'icône et le texte */
   display: inline-flex;
   align-items: center;
+  position: relative; /* NOUVEAU : Pour le pseudo-élément ::after */
 }
 
-/* ON MODIFIE ICI 👇 */
+/* MODIFIÉ : Effet de survol plus subtil */
 .footer-section ul li a:hover {
   color: var(--primary-color);
-  /* On ajoute un léger mouvement vers le haut au survol */
   transform: translateY(-2px);
 }
 
@@ -92,6 +104,7 @@
   margin-bottom: 20px;
 }
 
+/* MODIFIÉ : On arrondit complètement les bords */
 .subscribe-section input {
   width: 100%;
   padding: 12px 20px;
@@ -151,19 +164,28 @@
     grid-template-columns: 1fr;
     text-align: center;
   }
+  
+  /* NOUVEAU : On centre le trait sous le titre sur mobile */
+  .footer-section h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
   .social-links {
     justify-content: center;
   }
 
-  /* On s'assure que les liens restent bien alignés sur mobile */
   .footer-section ul li a {
     justify-content: center;
+  }
+  
+  .footer-app-badges {
+    justify-content: center; /* NOUVEAU : On centre les badges sur mobile */
   }
 }
 
 .footer-icon {
-  margin-right: 8px; /* Un peu plus d'espace */
+  margin-right: 8px;
   font-size: 1rem;
   vertical-align: middle;
 }
@@ -179,11 +201,11 @@
 }
 
 .subscribe-message.success {
-  background-color: #d1fae5; /* Vert pastel */
-  color: #065f46; /* Vert foncé */
+  background-color: #d1fae5;
+  color: #065f46;
 }
 
 .subscribe-message.error {
-  background-color: #fee2e2; /* Rouge pastel */
-  color: #991b1b; /* Rouge foncé */
+  background-color: #fee2e2;
+  color: #991b1b;
 }

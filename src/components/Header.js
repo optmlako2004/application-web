@@ -1,6 +1,7 @@
 // src/components/Header.js
 import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// ON MODIFIE ICI : On importe NavLink à la place de Link
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "./Header.css";
 import logo from "../assets/logo.png";
@@ -23,6 +24,7 @@ function Header() {
   return (
     <header className="app-header">
       <div className="logo-container">
+        {/* On garde Link pour le logo car il n'a pas besoin de style actif */}
         <Link to="/" onClick={closeMenu}>
           <img src={logo} alt="Follow My Truck Logo" className="logo" />
         </Link>
@@ -31,23 +33,23 @@ function Header() {
       {/* Navigation desktop */}
       <nav className="desktop-nav">
         <ul className="nav-links">
-          {/* ON AJOUTE : Le lien vers la page d'accueil */}
+          {/* ON REMPLACE TOUS LES <Link> PAR <NavLink> ICI */}
           <li>
-            <Link to="/">Accueil</Link>
+            <NavLink to="/">Accueil</NavLink>
           </li>
           <li>
-            <Link to="/food-trucks">Trouver un Food Truck</Link>
+            <NavLink to="/food-trucks">Trouver un Food Truck</NavLink>
           </li>
           <li>
-            <Link to="/espace-professionnel">Espace Pro</Link>
+            <NavLink to="/espace-professionnel">Espace Pro</NavLink>
           </li>
           <li>
-            <Link to="/blog">Blog</Link>
+            <NavLink to="/blog">Blog</NavLink>
           </li>
           {authState.isAuthenticated ? (
             <>
               <li>
-                <Link to="/mon-compte">Mon Compte</Link>
+                <NavLink to="/mon-compte">Mon Compte</NavLink>
               </li>
               <li>
                 <button onClick={handleLogout} className="logout-button">
@@ -58,10 +60,10 @@ function Header() {
           ) : (
             <>
               <li>
-                <Link to="/inscription">S'inscrire</Link>
+                <NavLink to="/inscription">S'inscrire</NavLink>
               </li>
               <li>
-                <Link to="/connexion">Se connecter</Link>
+                <NavLink to="/connexion">Se connecter</NavLink>
               </li>
             </>
           )}
@@ -89,24 +91,24 @@ function Header() {
       {/* Backdrop pour fermer en cliquant à côté */}
       {isMenuOpen && <div className="backdrop" onClick={closeMenu} />}
 
-      {/* Navigation mobile */}
+      {/* Navigation mobile (on peut aussi mettre NavLink ici pour plus de cohérence) */}
       {isMenuOpen && (
         <nav id="mobile-nav" className="mobile-nav" role="navigation">
           <ul className="mobile-nav-links">
-            <li><Link to="/" onClick={closeMenu}>Accueil</Link></li>
-            <li><Link to="/food-trucks" onClick={closeMenu}>Trouver un Food Truck</Link></li>
-            <li><Link to="/espace-professionnel" onClick={closeMenu}>Espace Pro</Link></li>
-            <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li>
+            <li><NavLink to="/" onClick={closeMenu}>Accueil</NavLink></li>
+            <li><NavLink to="/food-trucks" onClick={closeMenu}>Trouver un Food Truck</NavLink></li>
+            <li><NavLink to="/espace-professionnel" onClick={closeMenu}>Espace Pro</NavLink></li>
+            <li><NavLink to="/blog" onClick={closeMenu}>Blog</NavLink></li>
 
             {authState.isAuthenticated ? (
               <>
-                <li><Link to="/mon-compte" onClick={closeMenu}>Mon Compte</Link></li>
+                <li><NavLink to="/mon-compte" onClick={closeMenu}>Mon Compte</NavLink></li>
                 <li><button onClick={handleLogout} className="logout-button">Déconnexion</button></li>
               </>
             ) : (
               <>
-                <li><Link to="/inscription" onClick={closeMenu}>S'inscrire</Link></li>
-                <li><Link to="/connexion" onClick={closeMenu}>Se connecter</Link></li>
+                <li><NavLink to="/inscription" onClick={closeMenu}>S'inscrire</NavLink></li>
+                <li><NavLink to="/connexion" onClick={closeMenu}>Se connecter</NavLink></li>
               </>
             )}
 
