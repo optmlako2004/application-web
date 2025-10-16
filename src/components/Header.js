@@ -75,74 +75,43 @@ function Header() {
       </div>
 
       <button
-        className="hamburger-menu"
+        className={`hamburger-menu ${isMenuOpen ? "open" : ""}`}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Ouvrir le menu"
+        aria-expanded={isMenuOpen}
+        aria-controls="mobile-nav"
       >
         <div className="bar"></div>
         <div className="bar"></div>
         <div className="bar"></div>
       </button>
 
+      {/* Backdrop pour fermer en cliquant à côté */}
+      {isMenuOpen && <div className="backdrop" onClick={closeMenu} />}
+
       {/* Navigation mobile */}
       {isMenuOpen && (
-        <nav className="mobile-nav">
+        <nav id="mobile-nav" className="mobile-nav" role="navigation">
           <ul className="mobile-nav-links">
-            {/* ON AJOUTE : Le même lien pour le menu mobile */}
-            <li>
-              <Link to="/" onClick={closeMenu}>
-                Accueil
-              </Link>
-            </li>
-            <li>
-              <Link to="/food-trucks" onClick={closeMenu}>
-                Trouver un Food Truck
-              </Link>
-            </li>
-            <li>
-              <Link to="/espace-professionnel" onClick={closeMenu}>
-                Espace Pro
-              </Link>
-            </li>
-            <li>
-              <Link to="/blog" onClick={closeMenu}>
-                Blog
-              </Link>
-            </li>
+            <li><Link to="/" onClick={closeMenu}>Accueil</Link></li>
+            <li><Link to="/food-trucks" onClick={closeMenu}>Trouver un Food Truck</Link></li>
+            <li><Link to="/espace-professionnel" onClick={closeMenu}>Espace Pro</Link></li>
+            <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li>
+
             {authState.isAuthenticated ? (
               <>
-                <li>
-                  <Link to="/mon-compte" onClick={closeMenu}>
-                    Mon Compte
-                  </Link>
-                </li>
-                <li>
-                  <button onClick={handleLogout} className="logout-button">
-                    Déconnexion
-                  </button>
-                </li>
+                <li><Link to="/mon-compte" onClick={closeMenu}>Mon Compte</Link></li>
+                <li><button onClick={handleLogout} className="logout-button">Déconnexion</button></li>
               </>
             ) : (
               <>
-                <li>
-                  <Link to="/inscription" onClick={closeMenu}>
-                    S'inscrire
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/connexion" onClick={closeMenu}>
-                    Se connecter
-                  </Link>
-                </li>
+                <li><Link to="/inscription" onClick={closeMenu}>S'inscrire</Link></li>
+                <li><Link to="/connexion" onClick={closeMenu}>Se connecter</Link></li>
               </>
             )}
+
             <li>
-              <Link
-                to="/contact"
-                onClick={closeMenu}
-                className="mobile-contact-link"
-              >
-                CONTACT
-              </Link>
+              <Link to="/contact" onClick={closeMenu} className="mobile-contact-link">CONTACT</Link>
             </li>
           </ul>
         </nav>
