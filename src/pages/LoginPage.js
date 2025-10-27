@@ -1,9 +1,10 @@
 // src/pages/LoginPage.js
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
-import { AuthContext } from "../context/AuthContext"; // Importer notre contexte
+import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../context/AuthContext";
 import "./LoginPage.css";
+import "../components/FormStatus.css"; 
 
 function LoginPage() {
   const [loginData, setLoginData] = useState({
@@ -11,7 +12,9 @@ function LoginPage() {
     password: "",
     rememberMe: false,
   });
-  const { login } = useContext(AuthContext); // Utiliser la fonction login du contexte
+
+  const [status, setStatus] = useState({ message: "", type: "" });
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -24,6 +27,8 @@ function LoginPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setStatus({ message: "Connexion en cours...", type: "loading" });
+
     const submissionData = {
       email: loginData.email,
       password: loginData.password,
@@ -41,30 +46,50 @@ function LoginPage() {
       const data = await response.json();
 
       if (response.ok) {
-        login(data.token); // Appeler la fonction login du contexte avec le token
-        navigate("/"); // Rediriger
+        setStatus({
+          message: "Connexion réussie ! Redirection...",
+          type: "success",
+        });
+        login(data.token);
+        // Le message disparaît grâce à la redirection
+        setTimeout(() => navigate("/"), 1000);
       } else {
-        alert(`Erreur : ${data.message}`);
+        setStatus({ message: `Erreur : ${data.message}`, type: "error" });
+
+        // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE D'ERREUR
+        setTimeout(() => {
+          setStatus({ message: "", type: "" });
+        }, 5000); // 5 secondes
       }
     } catch (err) {
       console.error("Erreur lors de la communication avec le serveur", err);
-      alert("Impossible de communiquer avec le serveur.");
+      setStatus({
+        message: "Impossible de communiquer avec le serveur.",
+        type: "error",
+      });
+
+      // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE D'ERREUR
+      setTimeout(() => {
+        setStatus({ message: "", type: "" });
+      }, 5000);
     }
   };
 
   return (
     <div className="login-container">
-      {/* 2. AJOUTER LE BLOC HELMET ICI */}
       <Helmet>
         <title>Connexion - FoodMood</title>
-        <meta name="description" content="Connectez-vous à votre compte FoodMood pour retrouver vos food trucks favoris et gérer votre profil." />
+        <meta
+          name="description"
+          content="Connectez-vous à votre compte FoodMood pour retrouver vos food trucks favoris et gérer votre profil."
+        />
       </Helmet>
-      {/* FIN DU BLOC HELMET */}
 
       <div className="login-form-wrapper">
         <h1 className="login-title">Connexion</h1>
 
         <form className="login-form" onSubmit={handleSubmit}>
+          {/* ... (le reste de votre formulaire est inchangé) ... */}
           <div className="form-group">
             <label htmlFor="email">Email ou Nom d'utilisateur</label>
             <input
@@ -103,6 +128,14 @@ function LoginPage() {
           <button type="submit" className="submit-button">
             SE CONNECTER
           </button>
+
+          <p
+            className={`form-status ${status.type} ${
+              status.message ? "visible" : ""
+            }`}
+          >
+            {status.message}
+          </p>
 
           <div className="form-links">
             <Link to="/inscription">Créer un compte</Link>

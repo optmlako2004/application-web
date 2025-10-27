@@ -1,7 +1,8 @@
 // src/pages/RegisterPage.js
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
+import { Helmet } from "react-helmet-async";
 import "./RegisterPage.css";
+import "../components/FormStatus.css";
 
 function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ function RegisterPage() {
     privacy: false,
   });
 
+  const [status, setStatus] = useState({ message: "", type: "" });
+
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     setFormData((prevFormData) => ({
@@ -20,11 +23,10 @@ function RegisterPage() {
     }));
   };
 
-  // --- La fonction handleSubmit est maintenant mise à jour ---
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Empêche la page de se recharger
+    event.preventDefault();
+    setStatus({ message: "Création du compte...", type: "loading" });
 
-    // On retire la partie "privacy" avant l'envoi, le backend n'en a pas besoin
     const { privacy, ...submissionData } = formData;
 
     try {
@@ -39,30 +41,50 @@ function RegisterPage() {
       const data = await response.json();
 
       if (response.ok) {
-        // Succès !
-        alert(data.message); // Affiche "Utilisateur créé avec succès !"
-        // Plus tard, on pourrait rediriger l'utilisateur vers la page de connexion
+        setStatus({ message: data.message, type: "success" });
+        setFormData({
+          username: "",
+          name: "",
+          email: "",
+          password: "",
+          privacy: false,
+        });
+
+        // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
+        setTimeout(() => {
+          setStatus({ message: "", type: "" });
+        }, 5000); // 5 secondes
       } else {
-        // Erreur gérée par le backend (ex: email déjà utilisé)
-        alert(`Erreur : ${data.message}`);
+        setStatus({ message: `Erreur : ${data.message}`, type: "error" });
+
+        // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
+        setTimeout(() => {
+          setStatus({ message: "", type: "" });
+        }, 5000);
       }
     } catch (err) {
-      // Erreur de réseau (ex: le backend n'est pas lancé)
       console.error("Erreur lors de la communication avec le serveur", err);
-      alert(
-        "Impossible de communiquer avec le serveur. Veuillez réessayer plus tard."
-      );
+      setStatus({
+        message: "Impossible de communiquer avec le serveur.",
+        type: "error",
+      });
+
+      // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
+      setTimeout(() => {
+        setStatus({ message: "", type: "" });
+      }, 5000);
     }
   };
 
   return (
     <div className="register-container">
-      {/* 2. AJOUTER LE BLOC HELMET ICI */}
       <Helmet>
         <title>Créer un compte - FoodMood</title>
-        <meta name="description" content="Rejoignez la communauté FoodMood et commencez à découvrir les meilleurs food trucks autour de vous." />
+        <meta
+          name="description"
+          content="Rejoignez la communauté FoodMood et commencez à découvrir les meilleurs food trucks autour de vous."
+        />
       </Helmet>
-      {/* FIN DU BLOC HELMET */}
 
       <div className="register-form-wrapper">
         <h1 className="register-title">Créer un compte</h1>
@@ -71,7 +93,7 @@ function RegisterPage() {
         </p>
 
         <form className="register-form" onSubmit={handleSubmit}>
-          {/* Le reste du formulaire est inchangé */}
+          {/* ... (le reste de votre formulaire est inchangé) ... */}
           <div className="form-group">
             <label htmlFor="username">Nom d'utilisateur</label>
             <input
@@ -132,6 +154,14 @@ function RegisterPage() {
           <button type="submit" className="submit-button">
             Créer mon compte
           </button>
+
+          <p
+            className={`form-status ${status.type} ${
+              status.message ? "visible" : ""
+            }`}
+          >
+            {status.message}
+          </p>
         </form>
       </div>
     </div>

@@ -1,0 +1,33 @@
+/* src/components/FormStatus.css */
+/* Ce fichier sera utilisé par ContactPage, LoginPage, et RegisterPage */
+
+.form-status {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  display: none; /* Caché par défaut */
+}
+
+/* S'affiche s'il y a un message */
+.form-status.visible {
+  display: block;
+}
+
+/* Style de succès (VERT) */
+.form-status.success {
+  background-color: #e6f7ed; /* Fond vert clair */
+  border-color: #b7ebc9;    /* Bordure verte */
+  color: #1d643b;         /* Texte vert foncé */
+}
+
+/* Style d'erreur (ROUGE) */
+.form-status.error {
+  background-color: #fff0f0; /* Fond rouge clair */
+  border-color: #fdd8d8;    /* Bordure rouge */
+  color: #a80000;         /* Texte rouge foncé */
+}

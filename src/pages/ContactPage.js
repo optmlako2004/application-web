@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import "./ContactPage.css";
+import "../components/FormStatus.css"; 
 
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ function ContactPage() {
     message: "",
   });
 
-  const [formStatus, setFormStatus] = useState("");
+  const [formStatus, setFormStatus] = useState({ message: "", type: "" });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -22,10 +23,9 @@ function ContactPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setFormStatus("Envoi en cours...");
+    setFormStatus({ message: "Envoi en cours...", type: "loading" });
 
     try {
-      // On utilise le script PHP local
       const response = await fetch("/send-email.php", {
         method: "POST",
         headers: {
@@ -37,13 +37,38 @@ function ContactPage() {
       const data = await response.json();
 
       if (response.ok) {
-        setFormStatus(data.message);
+        setFormStatus({
+          message: data.message, // "Merci ! Votre message a bien été envoyé."
+          type: "success",
+        });
         setFormData({ name: "", email: "", message: "" });
+
+        // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
+        setTimeout(() => {
+          setFormStatus({ message: "", type: "" });
+        }, 5000); // 5 secondes
       } else {
-        setFormStatus(data.message);
+        setFormStatus({
+          message: data.message, // "Une erreur s'est produite..."
+          type: "error",
+        });
+
+        // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
+        setTimeout(() => {
+          setFormStatus({ message: "", type: "" });
+        }, 5000);
       }
     } catch (error) {
-      setFormStatus("Une erreur de communication s'est produite. Veuillez réessayer.");
+      setFormStatus({
+        message:
+          "Une erreur de communication s'est produite. Veuillez réessayer.",
+        type: "error",
+      });
+
+      // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
+      setTimeout(() => {
+        setFormStatus({ message: "", type: "" });
+      }, 5000);
     }
   };
 
@@ -65,6 +90,7 @@ function ContactPage() {
           </div>
 
           <form className="contact-form" onSubmit={handleSubmit}>
+            {/* ... (le reste de votre formulaire est inchangé) ... */}
             <div className="form-group">
               <label htmlFor="name">Votre Nom</label>
               <input
@@ -104,10 +130,16 @@ function ContactPage() {
             <button type="submit" className="submit-button">
               Envoyer le Message
             </button>
-            {formStatus && <p className="form-status">{formStatus}</p>}
+
+            <p
+              className={`form-status ${formStatus.type} ${
+                formStatus.message ? "visible" : ""
+              }`}
+            >
+              {formStatus.message}
+            </p>
           </form>
 
-          {/* VOTRE PHRASE AJOUTÉE ICI */}
           <p className="contact-footer-info">
             N'hésitez pas à consulter notre blog pour les dernières actualités
             ou à nous suivre on nos réseaux sociaux !
