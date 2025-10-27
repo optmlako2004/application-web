@@ -9,10 +9,10 @@
   min-height: calc(100vh - 250px);
 }
 
-/* ON AJOUTE : Une grille pour séparer le formulaire et les infos */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Deux colonnes de taille égale */
+  /* 1. MODIFICATION IMPORTANTE : On passe à une seule colonne */
+  grid-template-columns: 1fr;
   gap: 50px;
   background-color: var(--white);
   padding: 50px;
@@ -42,19 +42,8 @@
   text-align: left;
 }
 
-/* ON AJOUTE : Style pour la colonne d'informations */
-.contact-info h3 {
-  font-size: 1.5rem;
-  color: var(--dark-text);
-  margin-bottom: 20px;
-}
-.contact-info p {
-  line-height: 1.8;
-  color: var(--body-text);
-  margin-bottom: 15px;
-}
+/* LA COLONNE .contact-info EST SUPPRIMÉE */
 
-/* ON MODIFIE : Styles des champs de formulaire pour la cohérence */
 .form-group {
   margin-bottom: 20px;
 }
@@ -71,7 +60,7 @@
   width: 100%;
   padding: 14px;
   border: 1px solid #e0e0e0;
-  border-radius: 8px; /* Bords légèrement arrondis */
+  border-radius: 8px;
   font-size: 1rem;
   box-sizing: border-box;
   background-color: var(--background-light);
@@ -94,7 +83,7 @@
   width: 100%;
   padding: 15px;
   border: none;
-  border-radius: 50px; /* Bouton "pilule" */
+  border-radius: 50px;
   background-color: var(--primary-color);
   color: var(--dark-text);
   font-size: 1.1rem;
@@ -110,9 +99,20 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Responsive pour la page contact --- */
+/* 2. ON AJOUTE LE STYLE POUR VOTRE PHRASE */
+.contact-footer-info {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid #f0f0f0; /* Ligne de séparation */
+  font-size: 0.95rem;
+  color: var(--body-text);
+  line-height: 1.6;
+}
+
+/* --- Responsive --- */
 @media (max-width: 992px) {
   .contact-grid {
-    grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+    grid-template-columns: 1fr; /* C'était déjà le cas, mais on le garde */
   }
 }

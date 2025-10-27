@@ -1,6 +1,7 @@
 // src/pages/HomePage.js
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
 import "./HomePage.css";
 
 import { FaUtensils, FaTruckMoving } from "react-icons/fa";
@@ -35,6 +36,17 @@ const cities = [
 function HomePage() {
   return (
     <React.Fragment>
+      {/* 2. AJOUTER LE BLOC HELMET ICI */}
+      <Helmet>
+        <title>FoodMood - Trouvez les meilleurs Food Trucks (Paris, Lyon...)</title>
+        <meta
+          name="description"
+          content="Découvrez et localisez les meilleurs food trucks près de chez vous. FoodMood vous connecte à la street-food à Paris, Lyon, Marseille et plus."
+        />
+        <meta name="keywords" content="food truck, street food, paris, lyon, marseille, trouver food truck" />
+      </Helmet>
+      {/* FIN DU BLOC HELMET */}
+
       <section className="hero-section">
         <div className="cities-container">
           {cities.map((city) => (
@@ -70,7 +82,6 @@ function HomePage() {
             />
           </div>
           <div className="feature-text-content" data-aos="fade-up">
-            {/* ON DÉPLACE L'ICÔNE ICI, en dehors du h3 */}
             <FaUtensils className="feature-card-icon" />
             <h3>Pour les Gourmands</h3>
             <p>
@@ -90,13 +101,12 @@ function HomePage() {
             />
           </div>
           <div className="feature-text-content" data-aos="fade-up">
-            {/* ON DÉPLACE L'ICÔNE ICI, en dehors du h3 */}
             <FaTruckMoving className="feature-card-icon" />
             <h3>Pour les Professionnels</h3>
             <p>
               Gagnez en visibilité, partagez votre position en temps réel et
               mettez à jour vos horaires en quelques clics. Notre application
-              Driver est conçue pour vous simplifier la vie.
+TTC Driver est conçue pour vous simplifier la vie.
             </p>
           </div>
         </div>

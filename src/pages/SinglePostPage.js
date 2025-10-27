@@ -1,6 +1,7 @@
 // src/pages/SinglePostPage.js
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
 import sanityClient from "../sanityClient";
 import { mockPosts } from "../data/mockPosts";
 import "./SinglePostPage.css";
@@ -65,6 +66,16 @@ function SinglePostPage() {
   if (!post) {
     return (
       <div className="post-not-found">
+        {/* 2. AJOUTER UN HELMET POUR LA PAGE 404 */}
+        <Helmet>
+          <title>Article non trouvé | FoodMood</title>
+          <meta
+            name="description"
+            content="Désolé, l'article que vous cherchez n'existe pas."
+          />
+        </Helmet>
+        {/* FIN DU BLOC HELMET */}
+
         <h2>Article non trouvé</h2>
         <p>Désolé, l'article que vous cherchez n'existe pas.</p>
         <Link to="/blog">Retourner au blog</Link>
@@ -74,6 +85,13 @@ function SinglePostPage() {
 
   return (
     <div className="single-post-page">
+      {/* 3. AJOUTER LE BLOC HELMET DYNAMIQUE ICI */}
+      <Helmet>
+        <title>{`${post.title} | FoodMood`}</title>
+        {post.excerpt && <meta name="description" content={post.excerpt} />}
+      </Helmet>
+      {/* FIN DU BLOC HELMET */}
+
       <div className="post-container">
         {post.mainImageUrl && (
           <img

@@ -1,6 +1,7 @@
 // src/pages/BlogPage.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
 import sanityClient from "../sanityClient";
 import { mockPosts } from "../data/mockPosts";
 import "./BlogPage.css";
@@ -80,6 +81,16 @@ function BlogPage() {
 
   return (
     <div className="blog-page">
+      {/* 2. AJOUTER LE BLOC HELMET ICI */}
+      <Helmet>
+        <title>Blog Street-Food - Conseils et Actualités | FoodMood</title>
+        <meta
+          name="description"
+          content="Retrouvez nos derniers articles, conseils et actualités sur le monde de la street-food et des food trucks. Le blog officiel de FoodMood."
+        />
+      </Helmet>
+      {/* FIN DU BLOC HELMET */}
+
       <div className="blog-page-header">
         <h1>Le Blog de la Street-Food</h1>
         <p>

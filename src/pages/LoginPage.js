@@ -1,6 +1,7 @@
 // src/pages/LoginPage.js
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
 import { AuthContext } from "../context/AuthContext"; // Importer notre contexte
 import "./LoginPage.css";
 
@@ -53,6 +54,13 @@ function LoginPage() {
 
   return (
     <div className="login-container">
+      {/* 2. AJOUTER LE BLOC HELMET ICI */}
+      <Helmet>
+        <title>Connexion - FoodMood</title>
+        <meta name="description" content="Connectez-vous à votre compte FoodMood pour retrouver vos food trucks favoris et gérer votre profil." />
+      </Helmet>
+      {/* FIN DU BLOC HELMET */}
+
       <div className="login-form-wrapper">
         <h1 className="login-title">Connexion</h1>
 

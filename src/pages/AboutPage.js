@@ -1,12 +1,12 @@
 // src/pages/AboutPage.js
 import React from "react";
 import "./AboutPage.css";
+import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER HELMET
 
 // Importez les images
 import qrcodeDriver from "../assets/FoodTrucksDriver.png";
 import appStoreBadge from "../assets/appstore.webp";
 import googlePlayBadge from "../assets/playstore.webp";
-// ON SUGGÈRE : D'ajouter une photo du fondateur si possible
 import founderImage from "../assets/Mehar.png";
 
 function AboutPage() {
@@ -17,6 +17,16 @@ function AboutPage() {
 
   return (
     <div className="about-page">
+      {/* 2. AJOUTER LE BLOC HELMET ICI */}
+      <Helmet>
+        <title>Notre Histoire - FoodMood</title>
+        <meta
+          name="description"
+          content="Découvrez l'histoire de M. Mehar Jemai, fondateur de FoodMood, et notre mission pour connecter les amateurs de street-food avec les chefs."
+        />
+      </Helmet>
+      {/* FIN DU BLOC HELMET */}
+
       <div className="about-container">
         <div className="about-header">
           <h1>Notre Histoire : La Passion au Service de la Street-Food</h1>
@@ -28,7 +38,6 @@ function AboutPage() {
 
         <div className="story-section">
           <h2>L'Histoire d'une Vision</h2>
-          {/* ON AJOUTE : Une grille pour le texte et la photo */}
           <div className="story-grid">
             <div className="story-text">
               <p>

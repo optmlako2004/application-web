@@ -1,5 +1,6 @@
 // src/pages/RegisterPage.js
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
 import "./RegisterPage.css";
 
 function RegisterPage() {
@@ -56,6 +57,13 @@ function RegisterPage() {
 
   return (
     <div className="register-container">
+      {/* 2. AJOUTER LE BLOC HELMET ICI */}
+      <Helmet>
+        <title>Créer un compte - FoodMood</title>
+        <meta name="description" content="Rejoignez la communauté FoodMood et commencez à découvrir les meilleurs food trucks autour de vous." />
+      </Helmet>
+      {/* FIN DU BLOC HELMET */}
+
       <div className="register-form-wrapper">
         <h1 className="register-title">Créer un compte</h1>
         <p className="register-subtitle">

@@ -1,5 +1,6 @@
 // src/pages/ContactPage.js
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import "./ContactPage.css";
 
 function ContactPage() {
@@ -9,7 +10,6 @@ function ContactPage() {
     message: "",
   });
 
-  // ON MODIFIE : L'état pour gérer le statut de l'envoi
   const [formStatus, setFormStatus] = useState("");
 
   const handleChange = (event) => {
@@ -20,14 +20,13 @@ function ContactPage() {
     }));
   };
 
-  // ON MODIFIE : La fonction handleSubmit pour utiliser Formspree
   const handleSubmit = async (event) => {
     event.preventDefault();
     setFormStatus("Envoi en cours...");
 
     try {
-      const response = await fetch("https://formspree.io/f/mrbavqrk", {
-        // <-- REMPLACE AVEC TON VRAI LIEN
+      // On utilise le script PHP local
+      const response = await fetch("/send-email.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,20 +34,29 @@ function ContactPage() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        setFormStatus("Merci ! Votre message a bien été envoyé.");
-        setFormData({ name: "", email: "", message: "" }); // On vide le formulaire
+        setFormStatus(data.message);
+        setFormData({ name: "", email: "", message: "" });
       } else {
-        setFormStatus("Une erreur s'est produite. Veuillez réessayer.");
+        setFormStatus(data.message);
       }
     } catch (error) {
-      setFormStatus("Une erreur s'est produite. Veuillez réessayer.");
+      setFormStatus("Une erreur de communication s'est produite. Veuillez réessayer.");
     }
   };
 
   return (
     <div className="contact-container">
-      {/* ON AJOUTE : La structure de la grille */}
+      <Helmet>
+        <title>Nous Contacter - FoodMood</title>
+        <meta
+          name="description"
+          content="Une question ou une suggestion ? Contactez l'équipe de FoodMood via notre formulaire."
+        />
+      </Helmet>
+
       <div className="contact-grid">
         <div className="contact-form-wrapper">
           <div className="contact-header">
@@ -96,26 +104,13 @@ function ContactPage() {
             <button type="submit" className="submit-button">
               Envoyer le Message
             </button>
-            {/* ON AJOUTE : Un message pour informer l'utilisateur du statut de l'envoi */}
             {formStatus && <p className="form-status">{formStatus}</p>}
           </form>
-        </div>
 
-        {/* ON AJOUTE : La nouvelle colonne d'informations */}
-        <div className="contact-info">
-          <h3>Informations</h3>
-          <p>
-            Pour toute demande, vous pouvez également nous joindre directement :
-          </p>
-          <p>
-            <strong>Email :</strong> foodtrucksview@gmail.com
-          </p>
-          <p>
-            <strong>Téléphone :</strong> +33 6 51 63 51 01
-          </p>
-          <p>
+          {/* VOTRE PHRASE AJOUTÉE ICI */}
+          <p className="contact-footer-info">
             N'hésitez pas à consulter notre blog pour les dernières actualités
-            ou à nous suivre sur nos réseaux sociaux !
+            ou à nous suivre on nos réseaux sociaux !
           </p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 // src/pages/FindTrucksPage.js
 import React from "react";
+import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
 import { mockTrucks } from "../data/mockTrucks";
 import "./FindTrucksPage.css";
 
@@ -25,6 +26,16 @@ function FindTrucksPage() {
 
   return (
     <div className="find-trucks-page">
+      {/* 2. AJOUTER LE BLOC HELMET ICI */}
+      <Helmet>
+        <title>Trouver un Food Truck - Carte Interactive | FoodMood</title>
+        <meta
+          name="description"
+          content="Explorez la carte interactive de FoodMood pour trouver les meilleurs food trucks près de chez vous en temps réel. Localisez, choisissez et savourez."
+        />
+      </Helmet>
+      {/* FIN DU BLOC HELMET */}
+
       <h1>Trouver un Food Truck</h1>
 
       {/* CARTE INTERACTIVE */}

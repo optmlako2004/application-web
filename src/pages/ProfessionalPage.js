@@ -1,5 +1,6 @@
 // src/pages/ProfessionalPage.js
 import React from "react";
+import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
 import "./ProfessionalPage.css"; // On importera le style juste après
 
 // Import des captures d'écran de l'application Driver
@@ -20,6 +21,16 @@ function ProfessionalPage() {
 
   return (
     <div className="pro-page">
+      {/* 2. AJOUTER LE BLOC HELMET ICI */}
+      <Helmet>
+        <title>Espace Professionnel - Gérez votre Food Truck | FoodMood</title>
+        <meta
+          name="description"
+          content="Rejoignez FoodMood Driver. Donnez à votre food truck la visibilité qu'il mérite, partagez votre position en temps réel et gérez votre menu."
+        />
+      </Helmet>
+      {/* FIN DU BLOC HELMET */}
+
       {/* --- Section Héros pour les Pros --- */}
       <section className="pro-hero">
         <div className="pro-hero-content">
