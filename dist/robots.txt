@@ -1,0 +1,8 @@
+# S'adresse à tous les robots
+User-agent: *
+
+# Autorise l'exploration de l'ensemble du site public
+Allow: /
+
+# Indique à Google où se trouve le plan de votre site
+Sitemap: https://foodmoodfrance.fr/sitemap.xml
