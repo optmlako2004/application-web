@@ -1,12 +1,17 @@
-Options -MultiViews
+# Forcer HTTPS
 RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Ne PAS réécrire les appels API vers index.html
-RewriteCond %{REQUEST_URI} !^/api/
-
-# Laisse passer les fichiers et dossiers existants
+# React/Vite SPA routing
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
 
-# Tout le reste = SPA
-RewriteRule ^ index.html [L]
+# Sécurité statique (optionnel)
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=()"
+</IfModule>
