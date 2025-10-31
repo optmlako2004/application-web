@@ -1,5 +1,12 @@
 Options -MultiViews
 RewriteEngine On
+
+# Ne PAS réécrire les appels API vers index.html
+RewriteCond %{REQUEST_URI} !^/api/
+
+# Laisse passer les fichiers et dossiers existants
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+# Tout le reste = SPA
 RewriteRule ^ index.html [L]
