@@ -1,6 +1,6 @@
 // src/pages/ContactPage.js
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async"; // <-- 1. SUPPRIMER CETTE LIGNE (Fait)
 import "./ContactPage.css";
 import "../components/FormStatus.css"; 
 
@@ -43,7 +43,6 @@ function ContactPage() {
         });
         setFormData({ name: "", email: "", message: "" });
 
-        // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
         setTimeout(() => {
           setFormStatus({ message: "", type: "" });
         }, 5000); // 5 secondes
@@ -53,7 +52,6 @@ function ContactPage() {
           type: "error",
         });
 
-        // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
         setTimeout(() => {
           setFormStatus({ message: "", type: "" });
         }, 5000);
@@ -65,7 +63,6 @@ function ContactPage() {
         type: "error",
       });
 
-      // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
       setTimeout(() => {
         setFormStatus({ message: "", type: "" });
       }, 5000);
@@ -74,13 +71,13 @@ function ContactPage() {
 
   return (
     <div className="contact-container">
-      <Helmet>
-        <title>Nous Contacter - FoodMood</title>
-        <meta
-          name="description"
-          content="Une question ou une suggestion ? Contactez l'équipe de FoodMood via notre formulaire."
-        />
-      </Helmet>
+      {/* --- 2. REMPLACER PAR LA SYNTAXE REACT 19 (Fait) --- */}
+      <title>Nous Contacter - FoodMood</title>
+      <meta
+        name="description"
+        content="Une question ou une suggestion ? Contactez l'équipe de FoodMood via notre formulaire."
+      />
+      {/* --- FIN DE LA MODIFICATION --- */}
 
       <div className="contact-grid">
         <div className="contact-form-wrapper">

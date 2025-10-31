@@ -5,44 +5,80 @@ import { jwtDecode } from "jwt-decode";
 // 1. Créer le contexte
 export const AuthContext = createContext(null);
 
-// 2. Créer le "Fournisseur" de contexte (le composant qui partagera les données)
+// 2. Créer le "Fournisseur" de contexte
 export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
     token: null,
-    user: null,
+    user: null, // L'objet utilisateur (id, name, email, etc.)
     isAuthenticated: false,
   });
 
   // Ce hook s'exécute une seule fois au chargement de l'app
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    // --- MODIFICATION ---
+    // 1. Chercher dans localStorage (Se souvenir de moi)
+    let token = localStorage.getItem("token");
+    
+    // 2. Sinon, chercher dans sessionStorage (Session simple)
+    if (!token) {
+      token = sessionStorage.getItem("token");
+    }
+    // --- FIN MODIFICATION ---
+
     if (token) {
-      const decodedToken = jwtDecode(token);
-      // On vérifie si le token n'est pas expiré
-      if (decodedToken.exp * 1000 > Date.now()) {
-        setAuthState({
-          token: token,
-          user: decodedToken.user, // Les infos user sont dans le token
-          isAuthenticated: true,
-        });
-      } else {
-        localStorage.removeItem("token"); // Le token est expiré, on le supprime
+      try {
+        const decodedToken = jwtDecode(token);
+        
+        if (decodedToken.exp * 1000 > Date.now()) {
+          setAuthState({
+            token: token,
+            // --- CORRECTION ---
+            // Le token décodé EST l'objet utilisateur
+            user: decodedToken, 
+            isAuthenticated: true,
+          });
+        } else {
+          localStorage.removeItem("token");
+          sessionStorage.removeItem("token");
+        }
+      } catch (error) {
+        console.error("Erreur de décodage du token:", error);
+        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
       }
     }
   }, []);
 
-  const login = (token) => {
-    localStorage.setItem("token", token);
-    const decodedToken = jwtDecode(token);
-    setAuthState({
-      token: token,
-      user: decodedToken.user,
-      isAuthenticated: true,
-    });
+  // --- MODIFICATION ---
+  // On accepte un 2ème argument : rememberMe (un booléen)
+  const login = (token, rememberMe = false) => {
+    if (rememberMe) {
+      localStorage.setItem("token", token);
+    } else {
+      sessionStorage.setItem("token", token);
+    }
+    // --- FIN MODIFICATION ---
+
+    try {
+      const decodedToken = jwtDecode(token);
+      setAuthState({
+        token: token,
+        // --- CORRECTION ---
+        user: decodedToken, // Le token décodé EST l'objet utilisateur
+        isAuthenticated: true,
+      });
+    } catch (error) {
+      console.error("Erreur de décodage du token au login:", error);
+    }
   };
 
   const logout = () => {
+    // --- MODIFICATION ---
+    // On vide les DEUX stockages
     localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+    // --- FIN MODIFICATION ---
+    
     setAuthState({
       token: null,
       user: null,

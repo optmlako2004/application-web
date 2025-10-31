@@ -1,7 +1,7 @@
 // src/pages/AboutPage.js
 import React from "react";
 import "./AboutPage.css";
-import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER HELMET
+// import { Helmet } from "react-helmet-async"; // <-- 1. SUPPRIMER CETTE LIGNE
 
 // Importez les images
 import qrcodeDriver from "../assets/FoodTrucksDriver.png";
@@ -17,15 +17,13 @@ function AboutPage() {
 
   return (
     <div className="about-page">
-      {/* 2. AJOUTER LE BLOC HELMET ICI */}
-      <Helmet>
-        <title>Notre Histoire - FoodMood</title>
-        <meta
-          name="description"
-          content="Découvrez l'histoire de M. Mehar Jemai, fondateur de FoodMood, et notre mission pour connecter les amateurs de street-food avec les chefs."
-        />
-      </Helmet>
-      {/* FIN DU BLOC HELMET */}
+      {/* --- 2. REMPLACER PAR LA SYNTAXE REACT 19 --- */}
+      <title>Notre Histoire - FoodMood</title>
+      <meta
+        name="description"
+        content="Découvrez l'histoire de M. Mehar Jemai, fondateur de FoodMood, et notre mission pour connecter les amateurs de street-food avec les chefs."
+      />
+      {/* --- FIN DE LA MODIFICATION --- */}
 
       <div className="about-container">
         <div className="about-header">

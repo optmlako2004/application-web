@@ -1,7 +1,7 @@
 // src/pages/SinglePostPage.js
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
+// import { Helmet } from "react-helmet-async"; // <-- 1. SUPPRIMER CETTE LIGNE
 import sanityClient from "../sanityClient";
 import { mockPosts } from "../data/mockPosts";
 import "./SinglePostPage.css";
@@ -12,8 +12,8 @@ function SinglePostPage() {
 
   useEffect(() => {
     async function fetchPost() {
+      // ... (votre logique fetchPost reste inchangée) ...
       try {
-        // Récupération depuis Sanity
         const sanityPosts = await sanityClient.fetch(
           `*[_type == "post" && slug.current == $slug][0]{
             title,
@@ -33,7 +33,6 @@ function SinglePostPage() {
           return;
         }
 
-        // Recherche dans les mockPosts
         const mockPost = mockPosts.find(
           (p) => p.slug === slug || p.slug?.current === slug
         );
@@ -66,15 +65,13 @@ function SinglePostPage() {
   if (!post) {
     return (
       <div className="post-not-found">
-        {/* 2. AJOUTER UN HELMET POUR LA PAGE 404 */}
-        <Helmet>
-          <title>Article non trouvé | FoodMood</title>
-          <meta
-            name="description"
-            content="Désolé, l'article que vous cherchez n'existe pas."
-          />
-        </Helmet>
-        {/* FIN DU BLOC HELMET */}
+        {/* --- 2. REMPLACER PAR LA SYNTAXE REACT 19 --- */}
+        <title>Article non trouvé | FoodMood</title>
+        <meta
+          name="description"
+          content="Désolé, l'article que vous cherchez n'existe pas."
+        />
+        {/* --- FIN DE LA MODIFICATION --- */}
 
         <h2>Article non trouvé</h2>
         <p>Désolé, l'article que vous cherchez n'existe pas.</p>
@@ -85,12 +82,10 @@ function SinglePostPage() {
 
   return (
     <div className="single-post-page">
-      {/* 3. AJOUTER LE BLOC HELMET DYNAMIQUE ICI */}
-      <Helmet>
-        <title>{`${post.title} | FoodMood`}</title>
-        {post.excerpt && <meta name="description" content={post.excerpt} />}
-      </Helmet>
-      {/* FIN DU BLOC HELMET */}
+      {/* --- 3. REMPLACER PAR LA SYNTAXE REACT 19 (DYNAMIQUE) --- */}
+      <title>{`${post.title} | FoodMood`}</title>
+      {post.excerpt && <meta name="description" content={post.excerpt} />}
+      {/* --- FIN DE LA MODIFICATION --- */}
 
       <div className="post-container">
         {post.mainImageUrl && (

@@ -24,9 +24,9 @@ import {
 
 function Footer() {
   const appStoreLink =
-    "https://apps.apple.com/fr/app/foodtrucks-driver/id6749314863";
+    "https://apps.apple.com/fr/app/foodmood/id6746414808";
   const googlePlayLink =
-    "https://play.google.com/store/apps/details?id=com.arkone.foodtruckviewdriver";
+    "https://play.google.com/store/apps/details?id=com.arkone.foodtruckview";
 
   // On ajoute un état pour le statut du message ('success' ou 'error')
   const [email, setEmail] = useState("");

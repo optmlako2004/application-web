@@ -1,7 +1,8 @@
 // src/pages/HomePage.js
-import React from "react";
+import React, { useContext, useMemo } from "react"; // 1. Imports
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
+import { AuthContext } from "../context/AuthContext"; // 2. Import du contexte
+import { jwtDecode } from "jwt-decode"; // 3. Import de jwt-decode
 import "./HomePage.css";
 
 import { FaUtensils, FaTruckMoving } from "react-icons/fa";
@@ -11,7 +12,6 @@ import parisImage from "../assets/paris.jpg";
 import lyonImage from "../assets/lyon.jpg";
 import marseilleImage from "../assets/marseille.jpg";
 
-// Mettre à jour les imports des maquettes avec les nouveaux fichiers
 import finalMockupMap from "../assets/app-map.png";
 import professionalMockup from "../assets/acceuil.png";
 
@@ -20,40 +20,70 @@ const cities = [
     name: "PARIS",
     image: parisImage,
     alt: "Food trucks à Paris",
+    slug: "paris",
   },
   {
     name: "LYON",
     image: lyonImage,
     alt: "Food trucks à Lyon",
+    slug: "lyon",
   },
   {
     name: "MARSEILLE",
     image: marseilleImage,
     alt: "Food trucks à Marseille",
+    slug: "marseille",
   },
 ];
 
 function HomePage() {
+  // --- MODIFICATION TÂCHE 3 : Logique de bienvenue ---
+  const { authState } = useContext(AuthContext);
+
+  const userData = useMemo(() => {
+    try {
+      if (authState.token) {
+        return jwtDecode(authState.token);
+      }
+    } catch (error) {
+      console.error("Token invalide:", error);
+      return null;
+    }
+  }, [authState.token]);
+  // --- FIN MODIFICATION ---
+
   return (
     <React.Fragment>
-      {/* 2. AJOUTER LE BLOC HELMET ICI */}
-      <Helmet>
-        <title>FoodMood - Trouvez les meilleurs Food Trucks (Paris, Lyon...)</title>
-        <meta
-          name="description"
-          content="Découvrez et localisez les meilleurs food trucks près de chez vous. FoodMood vous connecte à la street-food à Paris, Lyon, Marseille et plus."
-        />
-        <meta name="keywords" content="food truck, street food, paris, lyon, marseille, trouver food truck" />
-      </Helmet>
-      {/* FIN DU BLOC HELMET */}
+      <title>FoodMood - Trouvez les meilleurs Food Trucks (Paris, Lyon...)</title>
+      <meta
+        name="description"
+        content="Découvrez et localisez les meilleurs food trucks près de chez vous. FoodMood vous connecte à la street-food à Paris, Lyon, Marseille et plus."
+      />
+      <meta name="keywords" content="food truck, street food, paris, lyon, marseille, trouver food truck" />
 
       <section className="hero-section">
+        
+        {/* --- MODIFICATION TÂCHE 3 : Affichage du message --- */}
+        {userData && (
+          <div className="homepage-welcome-banner">
+            <p>
+              Ravi de vous revoir, <strong>{userData.name}</strong> (@{userData.username}) !
+            </p>
+          </div>
+        )}
+        {/* --- FIN MODIFICATION --- */}
+
         <div className="cities-container">
+          {/* Les cartes sont maintenant des liens vers la page d'atterrissage des villes */}
           {cities.map((city) => (
-            <div key={city.name} className="city-card">
+            <Link
+              to={`/ville/${city.slug}`} // MISE À JOUR : utilise la route /ville/:slug
+              key={city.name}
+              className="city-card"
+            >
               <img src={city.image} alt={city.alt} />
               <div className="city-name">{city.name}</div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="hero-content">
@@ -106,7 +136,7 @@ function HomePage() {
             <p>
               Gagnez en visibilité, partagez votre position en temps réel et
               mettez à jour vos horaires en quelques clics. Notre application
-TTC Driver est conçue pour vous simplifier la vie.
+              Foodmood Driver est conçue pour vous simplifier la vie.
             </p>
           </div>
         </div>

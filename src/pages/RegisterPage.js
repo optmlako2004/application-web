@@ -1,8 +1,10 @@
 // src/pages/RegisterPage.js
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async";
+import { useNavigate, Link } from "react-router-dom"; // <-- Link a été ajouté
 import "./RegisterPage.css";
 import "../components/FormStatus.css";
+import "../components/FormControls.css"; 
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -10,10 +12,12 @@ function RegisterPage() {
     name: "",
     email: "",
     password: "",
-    privacy: false,
+    privacy: false, // L'état est déjà là, c'est parfait
   });
 
   const [status, setStatus] = useState({ message: "", type: "" });
+  const [showPassword, setShowPassword] = useState(false); 
+  const navigate = useNavigate(); 
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -27,7 +31,8 @@ function RegisterPage() {
     event.preventDefault();
     setStatus({ message: "Création du compte...", type: "loading" });
 
-    const { privacy, ...submissionData } = formData;
+    // On n'envoie pas la case "privacy" au backend
+    const { privacy, ...submissionData } = formData; 
 
     try {
       const response = await fetch("http://localhost:3001/api/register", {
@@ -41,7 +46,7 @@ function RegisterPage() {
       const data = await response.json();
 
       if (response.ok) {
-        setStatus({ message: data.message, type: "success" });
+        setStatus({ message: data.message + " Redirection...", type: "success" });
         setFormData({
           username: "",
           name: "",
@@ -50,14 +55,14 @@ function RegisterPage() {
           privacy: false,
         });
 
-        // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
+        // Redirige vers la page de connexion après 2.5 secondes
         setTimeout(() => {
-          setStatus({ message: "", type: "" });
-        }, 5000); // 5 secondes
+          navigate("/connexion");
+        }, 2500);
+
       } else {
         setStatus({ message: `Erreur : ${data.message}`, type: "error" });
 
-        // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
         setTimeout(() => {
           setStatus({ message: "", type: "" });
         }, 5000);
@@ -69,7 +74,6 @@ function RegisterPage() {
         type: "error",
       });
 
-      // 1. AJOUTER UN TIMER POUR EFFACER LE MESSAGE
       setTimeout(() => {
         setStatus({ message: "", type: "" });
       }, 5000);
@@ -78,13 +82,11 @@ function RegisterPage() {
 
   return (
     <div className="register-container">
-      <Helmet>
-        <title>Créer un compte - FoodMood</title>
-        <meta
-          name="description"
-          content="Rejoignez la communauté FoodMood et commencez à découvrir les meilleurs food trucks autour de vous."
-        />
-      </Helmet>
+      <title>Créer un compte - FoodMood</title>
+      <meta
+        name="description"
+        content="Rejoignez la communauté FoodMood et commencez à découvrir les meilleurs food trucks autour de vous."
+      />
 
       <div className="register-form-wrapper">
         <h1 className="register-title">Créer un compte</h1>
@@ -93,7 +95,7 @@ function RegisterPage() {
         </p>
 
         <form className="register-form" onSubmit={handleSubmit}>
-          {/* ... (le reste de votre formulaire est inchangé) ... */}
+          {/* ... (champs username, name, email, password inchangés) ... */}
           <div className="form-group">
             <label htmlFor="username">Nom d'utilisateur</label>
             <input
@@ -127,17 +129,30 @@ function RegisterPage() {
               required
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="password">Choisissez un mot de passe</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+            <div className="password-input-wrapper">
+              <input
+                type={showPassword ? "text" : "password"} 
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                className="password-toggle-icon"
+                role="button"
+                aria-label={showPassword ? "Cacher le mot de passe" : "Afficher le mot de passe"}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
           </div>
+
+          {/* --- MODIFICATION TÂCHE 2 & 3 --- */}
           <div className="form-group privacy-policy">
             <input
               type="checkbox"
@@ -148,12 +163,21 @@ function RegisterPage() {
               required
             />
             <label htmlFor="privacy">
-              J'ai lu et j'accepte la politique de confidentialité
+              J'ai lu et j'accepte la{" "}
+              <Link to="/politique-de-confidentialite" target="_blank">
+                politique de confidentialité
+              </Link>
             </label>
           </div>
-          <button type="submit" className="submit-button">
+          
+          <button 
+            type="submit" 
+            className="submit-button" 
+            disabled={!formData.privacy} // Le bouton est désactivé si privacy est false
+          >
             Créer mon compte
           </button>
+          {/* --- FIN MODIFICATION --- */}
 
           <p
             className={`form-status ${status.type} ${

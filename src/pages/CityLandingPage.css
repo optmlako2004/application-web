@@ -1,0 +1,151 @@
+/* src/pages/CityLandingPage.css */
+
+/* Styles généraux pour le conteneur de la page */
+.city-landing-page {
+  padding-top: 80px; /* Pour éviter que le header fixe ne cache le contenu */
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- VUE LYON / MARSEILLE (Coming Soon) --- */
+
+.city-landing-page.coming-soon {
+  justify-content: center; /* Centre le contenu verticalement */
+  padding-top: 100px; /* Augmente le padding top pour le centrage */
+}
+
+.landing-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.landing-card h1 {
+  font-size: 2rem;
+  color: var(--dark-text);
+  margin-bottom: 10px;
+}
+
+.landing-card p {
+  font-size: 1.1rem;
+  color: var(--body-text);
+  margin-bottom: 30px;
+}
+
+.notification-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.notification-form input[type="email"] {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.notification-form .cta-button.primary {
+  /* Réutilise votre style de bouton CTA */
+  flex-shrink: 0;
+  padding: 12px 20px;
+  background-color: var(--primary-color);
+  color: var(--dark-text);
+  border-radius: 50px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--body-text);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* --- VUE PARIS (AVEC CARTE) --- */
+
+.landing-map-header {
+  text-align: center;
+  padding: 40px 20px 20px 20px;
+  max-width: 800px;
+}
+
+.landing-map-header h1 {
+  font-size: 2.2rem;
+  color: var(--dark-text);
+  margin-bottom: 5px;
+}
+
+.landing-map-header p {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.map-container-wrapper {
+  width: 90%;
+  max-width: 1200px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.city-leaflet-map {
+  height: 600px; /* Grande taille pour la carte */
+  width: 100%;
+}
+
+/* Personnalisation de l'icône Leaflet */
+/* C'est important pour que l'image de votre logo s'affiche bien */
+.leaflet-marker-icon {
+  background: transparent !important; 
+  border: none !important;
+}
+
+/* Bouton de pied de page sous la carte */
+.map-view-footer {
+  padding-bottom: 40px;
+}
+
+.map-view-footer .cta-button.primary {
+  /* Reprise du style bouton CTA */
+  padding: 14px 35px;
+  font-size: 1rem;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: var(--dark-text);
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .city-leaflet-map {
+    height: 400px;
+  }
+
+  .landing-map-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .notification-form {
+    flex-direction: column;
+  }
+}

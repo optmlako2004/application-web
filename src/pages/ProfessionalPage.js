@@ -1,7 +1,7 @@
 // src/pages/ProfessionalPage.js
 import React from "react";
-import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
-import "./ProfessionalPage.css"; // On importera le style juste après
+// import { Helmet } from "react-helmet-async"; // <-- 1. SUPPRIMER CETTE LIGNE
+import "./ProfessionalPage.css"; 
 
 // Import des captures d'écran de l'application Driver
 import driverProfile from "../assets/profil.png";
@@ -21,15 +21,13 @@ function ProfessionalPage() {
 
   return (
     <div className="pro-page">
-      {/* 2. AJOUTER LE BLOC HELMET ICI */}
-      <Helmet>
-        <title>Espace Professionnel - Gérez votre Food Truck | FoodMood</title>
-        <meta
-          name="description"
-          content="Rejoignez FoodMood Driver. Donnez à votre food truck la visibilité qu'il mérite, partagez votre position en temps réel et gérez votre menu."
-        />
-      </Helmet>
-      {/* FIN DU BLOC HELMET */}
+      {/* --- 2. REMPLACER PAR LA SYNTAXE REACT 19 --- */}
+      <title>Espace Professionnel - Gérez votre Food Truck | FoodMood</title>
+      <meta
+        name="description"
+        content="Rejoignez FoodMood Driver. Donnez à votre food truck la visibilité qu'il mérite, partagez votre position en temps réel et gérez votre menu."
+      />
+      {/* --- FIN DE LA MODIFICATION --- */}
 
       {/* --- Section Héros pour les Pros --- */}
       <section className="pro-hero">

@@ -1,7 +1,7 @@
 // src/pages/BlogPage.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async"; // <-- 1. IMPORTER
+// import { Helmet } from "react-helmet-async"; // <-- 1. SUPPRIMER CETTE LIGNE
 import sanityClient from "../sanityClient";
 import { mockPosts } from "../data/mockPosts";
 import "./BlogPage.css";
@@ -10,7 +10,7 @@ function BlogPage() {
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
-    // Transformer les mockPosts pour qu'ils aient la même structure que Sanity
+    // ... (votre logique fetchAndCombinePosts reste inchangée) ...
     const transformedMockPosts = mockPosts.map((mockPost) => ({
       title: mockPost.title,
       slug: { current: mockPost.slug },
@@ -22,12 +22,10 @@ function BlogPage() {
       body: mockPost.content,
     }));
 
-    // 👉 Afficher les mockPosts par défaut (au cas où Sanity est vide)
     setPosts(transformedMockPosts);
 
     async function fetchAndCombinePosts() {
       try {
-        // Récupération des articles depuis Sanity
         const sanityData = await sanityClient.fetch(
           `*[_type == "post"]{
             title,
@@ -41,10 +39,8 @@ function BlogPage() {
           }`
         );
 
-        // Fusion Sanity + mock
         const allPosts = [...sanityData, ...transformedMockPosts];
 
-        // Normaliser et trier par date
         const postsWithDate = allPosts.map((p) => {
           let date = p.publishedAt || p.date;
           return {
@@ -65,6 +61,7 @@ function BlogPage() {
   }, []);
 
   const createExcerpt = (body) => {
+    // ... (votre fonction createExcerpt reste inchangée) ...
     if (!body) return "";
     if (typeof body === "string") return body.substring(0, 150) + "...";
     const firstTextBlock = body.find(
@@ -81,15 +78,13 @@ function BlogPage() {
 
   return (
     <div className="blog-page">
-      {/* 2. AJOUTER LE BLOC HELMET ICI */}
-      <Helmet>
-        <title>Blog Street-Food - Conseils et Actualités | FoodMood</title>
-        <meta
-          name="description"
-          content="Retrouvez nos derniers articles, conseils et actualités sur le monde de la street-food et des food trucks. Le blog officiel de FoodMood."
-        />
-      </Helmet>
-      {/* FIN DU BLOC HELMET */}
+      {/* --- 2. REMPLACER PAR LA SYNTAXE REACT 19 --- */}
+      <title>Blog Street-Food - Conseils et Actualités | FoodMood</title>
+      <meta
+        name="description"
+        content="Retrouvez nos derniers articles, conseils et actualités sur le monde de la street-food et des food trucks. Le blog officiel de FoodMood."
+      />
+      {/* --- FIN DE LA MODIFICATION --- */}
 
       <div className="blog-page-header">
         <h1>Le Blog de la Street-Food</h1>

@@ -17,7 +17,12 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 40px 20px;
+  
+  /* --- MODIFICATION --- */
+  /* On ajoute 80px (hauteur du header) + 40px (padding initial) = 120px */
+  padding: 120px 20px 40px 20px;
+  /* --- FIN MODIFICATION --- */
+  
   min-height: 70vh;
   background-color: var(--white);
   color: var(--dark-text);
@@ -204,8 +209,40 @@
   transform: scale(1.02);
 }
 
+/* --- MODIFICATION TÂCHE 3 : Style de la bannière de bienvenue --- */
+.homepage-welcome-banner {
+  width: 100%;
+  max-width: 1200px; /* Aligné avec la largeur max des éléments */
+  background-color: var(--dark-text);
+  color: var(--white);
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.homepage-welcome-banner p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--white);
+  font-weight: 500;
+}
+
+.homepage-welcome-banner p strong {
+  color: var(--primary-color);
+}
+/* --- FIN DE LA MODIFICATION --- */
+
+
 /* --- Styles pour les écrans mobiles --- */
 @media (max-width: 768px) {
+  /* --- MODIFICATION --- */
+  .hero-section {
+    /* On s'assure que le padding haut est correct aussi sur mobile */
+    padding-top: 100px; /* 80px header + 20px padding */
+  }
+  /* --- FIN MODIFICATION --- */
+
   .hero-content h1 {
     font-size: 2.2rem;
   }
@@ -225,4 +262,154 @@
   .feature-text-content {
     text-align: center;
   }
+  
+  /* Bannière responsive */
+  .homepage-welcome-banner {
+    width: 90%;
+  }
+  .homepage-welcome-banner p {
+    font-size: 1rem;
+  }
 }
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 140px 20px 60px 20px; /* 80px header + 60px espace */
+  background-color: #f8f9fa; /* Un fond gris clair */
+}
+
+.login-form-wrapper {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--dark-text);
+  margin-bottom: 10px;
+}
+
+.login-subtitle {
+  font-size: 1.1rem;
+  color: var(--body-text);
+  margin-bottom: 30px;
+}
+
+/* Les styles des champs de formulaire sont dans FormControls.css */
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.remember-me input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.forgot-password {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+}
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:disabled {
+  background-color: #fbdca7; /* Couleur plus pâle */
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+
+/* Le style du message de statut est dans FormStatus.css */
+
+.register-link-prompt {
+  margin-top: 25px;
+  font-size: 1rem;
+  color: var(--body-text);
+}
+
+.register-link-prompt a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-link-prompt a:hover {
+  text-decoration: underline;
+}
+
+
+/* --- NOUVEAUX STYLES POUR GOOGLE LOGIN --- */
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 25px 0;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+
+.divider-text {
+  padding: 0 15px;
+}
+
+.google-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+/* Le composant GoogleLogin est dans une <iframe>, 
+  le centrer avec ce conteneur est la meilleure façon 
+  de le gérer.
+*/
+
+/* --- FIN DES NOUVEAUX STYLES --- */

@@ -1,0 +1,123 @@
+/* src/pages/MenuPage.css */
+
+/* Conteneur principal de la page */
+.menu-page-container {
+  padding: 140px 40px 60px 40px; /* 140px en haut = 80px header + 60px espace */
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 80px); /* Hauteur minimale pour remplir l'écran */
+  box-sizing: border-box;
+  background-color: var(--white);
+}
+
+.menu-page-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--dark-text);
+  margin-bottom: 50px;
+}
+
+/* Grille pour les boîtes (MODIFIÉE) */
+.menu-page-grid {
+  display: grid;
+  /* MODIFIÉ : On passe de 3 à 2 colonnes par défaut */
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 30px;
+}
+
+/* Style d'une boîte (card) */
+.menu-card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 30px;
+  background-color: #fcfcfc; /* Un fond très légèrement gris */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* NOUVELLE RÈGLE: On cible la 3ème boîte (Contact) */
+.menu-card:nth-child(3) {
+  /* On lui dit de s'étendre sur les 2 colonnes (de la ligne 1 à la -1) */
+  grid-column: 1 / -1; 
+}
+
+.menu-card h2 {
+  font-size: 1.8rem;
+  color: var(--dark-text);
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.menu-card p {
+  font-size: 1rem;
+  color: var(--body-text);
+  line-height: 1.6;
+  flex-grow: 1; /* Pousse le bouton vers le bas */
+  margin-bottom: 25px;
+}
+
+/* Style pour les boutons dans les boîtes */
+.menu-card-button {
+  padding: 12px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent; /* Pour la transition */
+}
+
+/* Bouton primaire (S'identifier, S'inscrire) */
+.menu-card-button.primary {
+  background-color: var(--primary-color);
+  color: var(--dark-text);
+}
+
+.menu-card-button.primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Bouton secondaire (Contact) */
+.menu-card-button.secondary {
+  background-color: var(--white);
+  color: var(--dark-text);
+  border-color: #ddd;
+}
+
+/* --- MODIFICATION DEMANDÉE --- */
+.menu-card-button.secondary:hover {
+  background-color: var(--dark-text); /* Fond noir (votre variable) */
+  color: var(--white);               /* Texte blanc */
+  border-color: var(--dark-text);    /* Bordure noire */
+  transform: translateY(-2px);
+}
+
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .menu-page-container {
+    padding-top: 120px; /* Moins d'espace en haut sur mobile */
+  }
+
+  .menu-page-grid {
+    grid-template-columns: 1fr; /* 1 colonne sur mobile */
+  }
+  
+  .menu-page-title {
+    font-size: 2rem;
+  }
+
+  .menu-card {
+    padding: 25px;
+  }
+}
