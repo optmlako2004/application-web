@@ -47,4 +47,42 @@
         <priority>0.5</priority>
     </url>
 
+    <url>
+        <loc>https://foodmoodfrance.fr/politique-de-confidentialite</loc>
+        <lastmod>2025-10-30</lastmod>
+        <priority>0.4</priority>
+    </url>
+
+    <url>
+        <loc>https://foodmoodfrance.fr/blog/pourquoi-les-food-trucks-sont-a-la-mode</loc>
+        <lastmod>2025-10-30</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://foodmoodfrance.fr/blog/top-5-specialites-street-food</loc>
+        <lastmod>2025-10-30</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://foodmoodfrance.fr/blog/lancer-son-food-truck-les-etapes-cles</loc>
+        <lastmod>2025-10-30</lastmod>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://foodmoodfrance.fr/ville/paris</loc>
+        <lastmod>2025-10-30</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://foodmoodfrance.fr/ville/lyon</loc>
+        <lastmod>2025-10-30</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://foodmoodfrance.fr/ville/marseille</loc>
+        <lastmod>2025-10-30</lastmod>
+        <priority>0.6</priority>
+    </url>
+
 </urlset>
