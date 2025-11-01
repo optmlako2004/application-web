@@ -25,7 +25,8 @@ $message_admin .= "Email: " . htmlspecialchars($data['email']) . "\n\n";
 $message_admin .= "Message:\n" . htmlspecialchars($data['message']);
 
 // Headers pour l'email admin (IMPORTANT pour pouvoir "Répondre à")
-$headers_admin = "From: no-reply@foodmoodfrance.fr\r\n"; // Email de votre serveur
+// --- MODIFICATION ICI ---
+$headers_admin = "From: \"FoodMood\" <no-reply@foodmoodfrance.fr>\r\n"; // Email de votre serveur
 $headers_admin .= "Reply-To: " . htmlspecialchars($data['email']) . "\r\n"; // Email de l'utilisateur
 $headers_admin .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
@@ -72,7 +73,8 @@ $message_user = '
 ';
 
 // Headers pour l'email utilisateur (IMPORTANT pour que le HTML s'affiche)
-$headers_user = "From: contact@foodmoodfrance.fr\r\n";
+// --- MODIFICATION ICI ---
+$headers_user = "From: \"FoodMood\" <contact@foodmoodfrance.fr>\r\n";
 $headers_user .= "Reply-To: contact@foodmoodfrance.fr\r\n";
 $headers_user .= "MIME-Version: 1.0\r\n";
 $headers_user .= "Content-Type: text/html; charset=UTF-8\r\n";
